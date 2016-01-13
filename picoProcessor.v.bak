@@ -1,0 +1,367 @@
+
+module picoProcessor(pico_clk, 
+							pico_reset,
+							pico_port_ready, 
+							pico_int_req, 
+							pico_port_address, 
+							pico_port_read, 
+							pico_port_write, 
+							pico_int_ack, 
+							pico_port_data,
+							debug_program_counter,
+							debug_opcode,
+							debug_cc_z,
+							debug_cc_c,
+							debug_branch_taken);
+
+parameter d_width = 8;
+
+parameter stack_d_width = 12; //data width
+parameter stack_s_width = 4; //stack width
+parameter stack_sp_width = 3;//stack pointer width
+
+parameter programcounter_d_width = 12;
+
+parameter mux5_d_width = 12;
+parameter mux5_sel_width = 3; //sel_width/2
+
+parameter mux3_d_width = 12;
+parameter mux3_sel_width = 2; //sel_width/2
+
+parameter mux2_d_width = 12;
+parameter mux2_sel_width = 1; //sel_width/2
+
+parameter interrupt_pc_d_width = 12;
+
+parameter imem_size = 4096;
+parameter imem_d_width   = 12;
+parameter imem_opcode6_width = 6;
+parameter imem_pc_address_width = 12;
+parameter imem_const_disp_width = 8;
+parameter imem_address_r1_r2_rd_width = 3;
+
+parameter gpr_d_width  = 8;
+parameter gpr_d_addr_width = 3;
+parameter gpr_reg_deep = 8;
+parameter gpr_op_width = 5;
+
+parameter alu_shifter_d_width = 8;
+parameter alu_shifter_opcode_width = 4;
+
+parameter ext_d_width = 12;
+
+parameter dmem_d_width = 8;
+parameter dmem_width = 256;
+
+parameter controller_opcode6_width = 6;
+parameter controller_alu_fn_width  = 4;
+
+parameter fa_d_width = 12;
+
+parameter int_d_width = 12;
+
+parameter tri_d_width = 8;
+
+parameter buff_d_width = 8;
+
+input 					          		pico_clk;
+input 					          		pico_reset;
+input 					          		pico_port_ready;
+input 					          		pico_int_req;
+
+inout	 [d_width-1:0]  			 		pico_port_data;					
+
+output [d_width-1:0]  			 		pico_port_address;
+output 					          		pico_port_read;
+output 					          		pico_port_write;
+output 					          		pico_int_ack;
+
+output [11:0]						 		debug_program_counter;
+output [5:0]						 		debug_opcode;
+output								 		debug_cc_z;
+output								 		debug_cc_c;
+output								 		debug_branch_taken;
+
+wire 	 [d_width-1:0]   			 		pico_port_address;
+reg 						          		pico_port_read;
+reg 						          		pico_int_ack;
+reg    					          		pico_port_write;
+
+wire [11:0]							 		debug_program_counter;
+wire [5:0]						 	 		debug_opcode;
+wire									 		debug_cc_z;
+wire									 		debug_cc_c;
+wire									 		debug_branch_taken;
+
+wire          [5:0]                 controller_opcode6_from_imem_opcode6;
+wire											controller_cc_from_z_cc_z;
+wire                                alu_carry_in_and_controller_cc_from_cc_c;
+wire                                controller_int_req_from_pico_int_req;
+wire [controller_alu_fn_width-1:0]  controller_alu_fn_to_alu_fn;
+wire                                controller_dmem_write_en_to_dmem_write_en;
+wire         [1-1:0]                controller_mux2_1_1_or_disp_to_mux2_1_1_or_disp_sel;
+wire         [2:0]                  controller_mux5_1_to_mux5_sel;
+wire         [1-1:0]                controller_mux2_1_r2_rd_to_mux2_1_r2_rd_sel;
+wire         [2-1:0]                controller_mux3_1_to_mux3_sel;
+wire         [1-1:0]                controller_mux2_1_gpr2_const_to_mux2_1_gpr2_const_sel;
+wire                                controller_gpr_write_en_to_gpr_write_enable;
+wire                                controller_reti_signal_to_cc_reti_signal;
+wire                                controller_int_en_to_int_en;
+wire                                controller_port_read_to_pico_port_read;
+wire                                controller_port_write_to_pico_port_write;
+wire                                controller_push_pop_to_stack_push_pop;
+wire                                controller_tri_state_buffer_to_tri_s_enable;
+wire                                controller_port_ready_from_pico_port_ready;
+wire                                controller_stack_en;
+
+wire                                alu_carry_in_from_cc_c;
+wire                                alu_zero_out_to_cc_alu_z;
+wire                                alu_carry_out_to_cc_alu_c;
+wire                                int_ack_to_pico_int_ack; 	
+
+
+controller 			  pico_controller(
+												.reset                         (pico_reset),
+												.controller_opcode6					       (controller_opcode6_from_imem_opcode6), 					            // controller_opcode6				<- imem_opcode6
+												.controller_cc_z						         (controller_cc_from_z_cc_z), 	 			 				                  // controller_cc_z 					<- cc_z
+												.controller_cc_c						         (alu_carry_in_and_controller_cc_from_cc_c),	 							     // controller_cc_c 					<- cc_c	
+												.controller_int_req					       (controller_int_req_from_pico_int_req), 					        // controller_int_req 				<- tmp_pico_int_req//
+												.controller_port_ready				     (controller_port_ready_from_pico_port_ready),		     // controller_port_ready 					<- tmp_pico_port_ready//
+												.controller_alu_fn					        (controller_alu_fn_to_alu_fn),  			                      // controller_alu_fn 				-> alu_fn
+												.controller_dmem_write_en		 (controller_dmem_write_en_to_dmem_write_en),	            // controller_dmem_write_en 		-> dmem_write_en
+												.controller_mux2_1_1_or_disp   (controller_mux2_1_1_or_disp_to_mux2_1_1_or_disp_sel),   // controller_mux2_1_1_or_disp 	-> mux2_1_1_or_disp_sel
+												.controller_mux5_1				 (controller_mux5_1_to_mux5_sel),				                     // controller_mux5_1 			  	-> mux5_sel
+												.controller_mux2_1_r2_rd			    (controller_mux2_1_r2_rd_to_mux2_1_r2_rd_sel),		         // controller_mux2_1_r2_rd 	  	-> mux2_1_r2_rd_sel
+												.controller_mux3_1					        (controller_mux3_1_to_mux3_sel),				                     // controller_mux3_1 			  	-> mux3_sel
+												.controller_mux2_1_gpr2_const		(controller_mux2_1_gpr2_const_to_mux2_1_gpr2_const_sel), // controller_mux2_1_gpr2_const -> mux2_1_gpr2_const_sel
+												.controller_gpr_write_en			    (controller_gpr_write_en_to_gpr_write_enable),		         // controller_gpr_write_en      -> gpr_write_enable
+												.controller_reti_signal				    (controller_reti_signal_to_cc_reti_signal),		            // controller_reti_signal       -> cc_reti_signal
+												.controller_int_en					        (controller_int_en_to_int_en),				                       // controller_int_en            -> int_en
+												.controller_port_write				     (controller_port_write_to_pico_port_write),		        // controller_port_write 			-> tmp_pico_port_write//
+												.controller_port_read				      (controller_port_read_to_pico_port_read),			         // controller_port_read 			-> tmp_pico_port_read//
+												.controller_push_pop					      (controller_push_pop_to_stack_push_pop),			              // controller_push_pop          -> stack_push_pop
+												.controller_tri_state_buffer		 (controller_tri_state_buffer_to_tri_s_enable),        // controller_tri_state_buffer  -> tri_s_enable
+												.controller_ack                (int_ack_to_pico_int_ack),
+												.controller_stack_en           (controller_stack_en),
+												.controller_branch_taken		 (controller_branch_taken));
+
+wire [tri_d_width-1:0] 				 tri_s_data_out_to_pico_port_data;
+wire [mux5_d_width-1:0]           mux5_data1_and_stack_data_in_from_fa_result;
+wire [mux5_d_width-1:0]           mux5_data2_from_imem_pc_address;
+wire [mux5_d_width-1:0]           mux5_data3_from_stack_data_out;
+wire [mux5_d_width-1:0]           mux5_data4_from_int_return_pc;
+wire [mux5_d_width-1:0]           mux5_result_to_pc_in;
+
+mux5#(12,3) 		  pico_mux5	  	(.mux5_data0	 (12'b1),
+											 .mux5_data1	 (mux5_data1_and_stack_data_in_from_fa_result), 				//mux5_data1  <- fa_result
+	                               .mux5_data2	 (mux5_data2_from_imem_pc_address), 		//mux5_data2  <- imem_pc_address
+	                               .mux5_data3	 (mux5_data3_from_stack_data_out), 		//mux5_data3  <- stack_data_out
+	                               .mux5_data4	 (mux5_data4_from_int_return_pc),			//mux5_data4  <- int_return_pc
+	                               .mux5_sel		  (controller_mux5_1_to_mux5_sel), 	//mux5_sel    <- controller_mux5_1
+	                               .mux5_result	(mux5_result_to_pc_in));			//mux5_result -> pc_in
+
+
+
+wire  [8-1:0]  	      mux3_data0_from_pico_port_data;//
+wire  [8-1:0]  	      mux3_data1_from_dmem_out;
+wire  [8-1:0]  	      mux3_data2_dmem_alu_result_from_alu_result;
+wire  [8-1:0]  	      mux3_result_to_gpr_write_back;
+
+mux3#(8,2) 				  pico_mux3(.mux3_data0		(pico_port_data), 		//mux3_data0  <- pico_port_data//
+	                              .mux3_data1		(mux3_data1_from_dmem_out),					//mux3_data1  <- dmem_out
+	                              .mux3_data2		(mux3_data2_dmem_alu_result_from_alu_result),				//mux3_data2  <- alu_result
+	                              .mux3_sel		  (controller_mux3_1_to_mux3_sel), 	//mux3_sel	  <- controller_mux3_1
+	                              .mux3_result	(mux3_result_to_gpr_write_back));			//mux3_result -> gpr_write_back
+
+
+
+wire  [3-1:0]  	      mux2_data0_from_imem_address_r2;
+wire  [3-1:0]  	      gpr_address_rd_and_mux2_data1_from_imem_address_rd;
+wire  [3-1:0]  	      mux2_result_to_gpr_address_r2;
+
+mux2#(3,1) 	pico_mux2_1_r2_rd(.mux2_data0   (mux2_data0_from_imem_address_r2),  	    //mux2_data0  <- imem_address_r2 	
+												      .mux2_data1   (gpr_address_rd_and_mux2_data1_from_imem_address_rd),	      //mux2_data1  <- imem_address_rd
+												      .mux2_sel     (controller_mux2_1_r2_rd_to_mux2_1_r2_rd_sel),         //mux2_sel	  <- controller_mux2_1
+												      .mux2_result  (mux2_result_to_gpr_address_r2));     //mux2_result -> gpr_address_r2
+
+
+
+wire	[8-1:0]  	      mux2_data0_from_gpr2;
+wire	[8-1:0]  	      mux2_data1_from_imem_const_disp;
+wire	[8-1:0]  	      mux2_result_to_b;
+
+mux2#(8,1) 	 		 			 pico_mux2_1_gpr2_const(.mux2_data0  (mux2_data0_from_gpr2),	  						  //mux2_data0  <- gpr2
+												             .mux2_data1  (mux2_data1_from_imem_const_disp),				  //mux2_data1  <- imem_const_disp
+												             .mux2_sel    (controller_mux2_1_gpr2_const_to_mux2_1_gpr2_const_sel), //mux2_sel    <- controller_mux2_1_gpr2_const
+												             .mux2_result (mux2_result_to_b)); //mux2_result -> b
+
+
+wire	[8-1:0]  	      mux2_result_to_ext_data_in;
+												
+mux2#(8,1) 	 		 	 			 	 pico_mux2_1_1_disp(.mux2_data0  (8'b1), 
+												           .mux2_data1  (mux2_data1_from_imem_const_disp + 1'b1),				  //mux2_data1  <- imem_const_disp 
+												           .mux2_sel    (controller_mux2_1_1_or_disp_to_mux2_1_1_or_disp_sel),   //mux2_sel	 <- controller_mux2_1_1_or_disp
+												           .mux2_result (mux2_result_to_ext_data_in)); 	  //mux2_result -> ext_data_in
+
+
+
+
+
+stack 						 pico_stack(.clk            (pico_clk),
+												.reset          (pico_reset),
+												.stack_push_pop (controller_push_pop_to_stack_push_pop), // stack_push_pop <- controller_push_pop
+												.stack_data_in  (mux5_data1_and_stack_data_in_from_fa_result),		  		  // stack_data_in  <- fa_result
+												.stack_data_out (mux5_data3_from_stack_data_out),	  // stack_data_out -> mux5_data3
+												.stack_en       (controller_stack_en));
+
+wire [programcounter_d_width-1:0]      pc_out_to_fa_data_a_and_int_current_pc_stack_in;
+
+program_counter 				pico_program_counter(.clk     (pico_clk),
+											                   .reset   (pico_reset),
+										  	                  .pc_out  (pc_out_to_fa_data_a_and_int_current_pc_stack_in),      //pc_out -> fa_data_a, int_current_pc, stack_in
+										   	                 .pc_in   (mux5_result_to_pc_in)); //pc_in <- mux5_result
+
+																	  
+
+wire [imem_address_r1_r2_rd_width-1:0] imem_address_r1_to_gpr_address_r1;
+												 
+imem 							  pico_imem(
+												.imem_read_address  (pc_out_to_fa_data_a_and_int_current_pc_stack_in),  			    	//imem_read_address <- pc_out
+												.imem_opcode6       (controller_opcode6_from_imem_opcode6), 		    	           //imem_opcode6 -> controller_opcode
+												.imem_pc_address    (mux5_data2_from_imem_pc_address), 		           //imem_pc_address -> mux5_data2
+												.imem_const_disp    (mux2_data1_from_imem_const_disp), 		           //imem_const_disp -> mux2_data1 (1_disp), mux2_data1 (gpr_const)
+												.imem_address_r1    (imem_address_r1_to_gpr_address_r1), 		           //imem_address_r1 -> gpr_address_r1
+												.imem_address_r2    (mux2_data0_from_imem_address_r2), 		           //imem_address_r2 -> mux2_data0 (r2 or rd)
+												.imem_address_rd    (gpr_address_rd_and_mux2_data1_from_imem_address_rd));	  	         //imem_address_rd -> mux2_data1 (r2 or rd)
+
+
+wire  [ext_d_width-1:0] ext_data_out_to_fa_data_b;
+                
+extension 		 		pico_extension(.ext_data_in (mux2_result_to_ext_data_in),				//ext_data_in  <- mux2_result
+												      .ext_data_out(ext_data_out_to_fa_data_b));				//ext_data_out -> fa_data_b
+
+
+
+full_adder 			  pico_full_adder(.fa_data_a(pc_out_to_fa_data_a_and_int_current_pc_stack_in), 				// fa_data_a <- pc_out
+												        .fa_data_b(ext_data_out_to_fa_data_b), 		// fa_data_b <- ext_data_out
+												        .fa_result(mux5_data1_and_stack_data_in_from_fa_result));			// fa_result -> mux5_data1
+
+
+
+wire  [gpr_d_width-1:0]       gpr1_to_a;
+
+gpr 							pico_gpr (
+                        .clk(pico_clk), 
+												.reset(pico_reset), 
+												.gpr_address_r1(imem_address_r1_to_gpr_address_r1),  				//gpr_address_r1 	 <- imem_address_r1
+												.gpr_address_r2(mux2_result_to_gpr_address_r2),   		//gpr_address_r2 	 <- mux2_1_r2_rd_result
+												.gpr_address_rd(gpr_address_rd_and_mux2_data1_from_imem_address_rd),   				//gpr_address_rd	 <- imem_address_rd
+												.gpr1(gpr1_to_a), 											//gpr1 			  	 -> a
+												.gpr2(mux2_data0_from_gpr2), 											//gpr2			  	 -> mux2_data0
+												.gpr_write_back(mux3_result_to_gpr_write_back), 					//gpr_write_back 	 <- mux3_result
+												.gpr_write_enable(controller_gpr_write_en_to_gpr_write_enable));	//gpr_write_enable <- controller_gpr_write_en
+													
+												
+dmem 						     pico_dmem(
+                           .clk(pico_clk),
+                           .reset(pico_reset), 
+												   .dmem_alu_result(mux3_data2_dmem_alu_result_from_alu_result), 					//dmem_alu_result <- alu_result
+												   .dmem_in(mux2_data0_from_gpr2), 										//dmem_in			<- gpr2
+												   .dmem_out(mux3_data1_from_dmem_out), 								//dmem_out			-> mux3_data1
+												   .dmem_write_en(controller_dmem_write_en_to_dmem_write_en));	//dmem_write_en   <- controller_dmem_write_en
+				
+
+
+alushifter 			  pico_alushifter (
+															.reset(pico_reset),
+															.a(gpr1_to_a), 													//a 				 <- gpr1
+												         .b(mux2_result_to_b), 					//b 				 <- mux2_1_gpr2_const_result
+												         .alu_carry_out(alu_carry_out_to_cc_alu_c), 					//alu_carry_out -> cc_alu_c
+												         .alu_zero_out(alu_zero_out_to_cc_alu_z), 					//alu_zero_out  -> cc_alu_z
+												         .alu_carry_in(alu_carry_in_and_controller_cc_from_cc_c), 								//alu_carry_in  <- cc_c
+												         .alu_fn(controller_alu_fn_to_alu_fn), 						//alu_fn 		 <- controller_alu_fn
+												         .alu_result(mux3_data2_dmem_alu_result_from_alu_result));							//alu_result 	 -> dmem_alu_result, mux3_data2
+								
+									
+wire                   cc_int_c_from_int_cc_c;
+wire                   cc_int_z_from_int_cc_z;
+									
+condition_code pico_condition_code ( 
+												.clk(pico_clk),
+                                    .reset(pico_reset), 
+                                    .cc_alu_c(alu_carry_out_to_cc_alu_c), 								//cc_alu_c 			<- alu_carry_out
+                                    .cc_alu_z(alu_zero_out_to_cc_alu_z), 								//cc_alu_z 			<- alu_zero_out
+                                    .cc_int_c(cc_int_c_from_int_cc_c), 									//cc_int_c 			<- int_cc_c
+                                    .cc_int_z(cc_int_z_from_int_cc_z), 									//cc_int_z			<- int_cc_c
+                                    .cc_c(alu_carry_in_and_controller_cc_from_cc_c), 												//cc_c				-> controller_cc_z, int_cc_c
+                                    .cc_z(controller_cc_from_z_cc_z), 												//cc_z				-> controller_cc_z, int_cc_z
+                                    .cc_reti_signal(controller_reti_signal_to_cc_reti_signal)); 		//	cc_reti_signal <- controller_reti_signal
+                                     
+
+wire						  int_req_from_pico_int_req;			
+
+
+interrupt_pc 		pico_interrupt_pc( 
+                                 .clk(pico_clk),
+												         .reset(pico_reset), 
+												         .int_current_pc(pc_out_to_fa_data_a_and_int_current_pc_stack_in), 			//int_current_pc <- pc_out
+												         .int_en(controller_int_en_to_int_en), 		//int_en 		  <- controller_int_en
+												         .int_req(int_req_from_pico_int_req), 					//int_req 		  <- pico_int_req////////////////////////////
+												         .int_cc_c(alu_carry_in_and_controller_cc_from_cc_c), 						//int_cc_c 		  <- cc_int_c
+												         .int_cc_z(controller_cc_from_z_cc_z),						//int_cc_z 		  <- cc_int_z
+												         .int_return_pc(mux5_data4_from_int_return_pc),	//int_return_pc  -> mux5_data4
+												         .int_z(cc_int_z_from_int_cc_z), 						//int_z			  -> cc_int_c
+												         .int_c(cc_int_c_from_int_cc_c), 						//int_c			  -> cc_int_z
+												         .int_ack(int_ack_to_pico_int_ack), 		//int_ack 		  -> tmp_pico_int_ack//////////////////////////////
+															.reti_signal(controller_reti_signal_to_cc_reti_signal));
+
+															
+
+tri_state_buffer 					pico_tri_state_buffer(.tri_s_data_out  (tri_s_data_out_to_pico_port_data), 			    //tri_s_data_out -> pico_port_data;//////////////////
+													                  .tri_s_data_in   (mux2_data0_from_gpr2), 	  							 //tri_s_data_in  <- gpr2
+													                  .tri_s_enable    (controller_tri_state_buffer_to_tri_s_enable)); // tri_s_enable <- controller_tri_state_buffer
+
+
+
+wire [buff_d_width-1:0]    buff_data_out_to_pico_port_address;
+
+buffer 							pico_buffer(.buff_data_in    (mux3_data2_dmem_alu_result_from_alu_result),			//buff_data_in  <- alu_result
+													.buff_data_out   (buff_data_out_to_pico_port_address));	//buff_data_out -> pico_port_address
+					
+					
+always@(posedge pico_clk or negedge pico_reset)
+begin
+  if(pico_reset != 1)
+  begin
+  pico_port_read    <= 1'b0;
+  pico_int_ack      <= 1'b0;
+  pico_port_write   <= 1'b0;
+  end
+  
+  else
+  begin
+  pico_int_ack 			  <= int_ack_to_pico_int_ack;
+  pico_port_write   	  	  <= controller_port_write_to_pico_port_write;
+  pico_port_read    	  	  <= controller_port_read_to_pico_port_read;
+  $display("PC: %d",debug_program_counter);
+  end
+end
+
+assign debug_branch_taken 								  = controller_branch_taken;
+assign debug_cc_z 										  = controller_cc_from_z_cc_z;
+assign debug_cc_c 										  = alu_carry_in_and_controller_cc_from_cc_c;
+assign debug_opcode			 							  = controller_opcode6_from_imem_opcode6;
+assign debug_program_counter 							  = pc_out_to_fa_data_a_and_int_current_pc_stack_in;
+assign pico_port_address 	  							  = buff_data_out_to_pico_port_address;
+assign pico_port_data 	 	  							  = tri_s_data_out_to_pico_port_data;
+assign controller_port_ready_from_pico_port_ready = pico_port_ready;
+assign controller_int_req_from_pico_int_req 		  = pico_int_req;
+assign int_req_from_pico_int_req 					  = pico_int_req;
+
+endmodule
+
+
+
+
+
+

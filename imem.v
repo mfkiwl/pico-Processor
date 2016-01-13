@@ -1,0 +1,215 @@
+`timescale 1ps/1ps
+module imem(imem_read_address, imem_opcode6, imem_pc_address, imem_const_disp, 
+            imem_address_r1, imem_address_r2, imem_address_rd);
+  
+parameter imem_size = 4096;
+parameter d_width   = 12;
+parameter opcode6_width = 6;
+parameter pc_address_width = 12;
+parameter const_disp_width = 8;
+parameter address_r1_r2_rd_width = 3;
+
+//input       clk;
+//input						reset;
+input  [d_width-1:0] imem_read_address; // from Program counter
+
+output [opcode6_width-1:0] imem_opcode6;
+output [pc_address_width-1:0] imem_pc_address;
+output [const_disp_width-1:0] imem_const_disp;
+output [address_r1_r2_rd_width-1:0] imem_address_r1;
+output [address_r1_r2_rd_width-1:0] imem_address_r2;
+output [address_r1_r2_rd_width-1:0] imem_address_rd;
+  
+wire [opcode6_width-1:0] imem_opcode6;
+wire [pc_address_width-1:0] imem_pc_address;
+wire [const_disp_width-1:0] imem_const_disp;
+wire [address_r1_r2_rd_width-1:0] imem_address_r1;
+wire [address_r1_r2_rd_width-1:0] imem_address_r2;
+wire [address_r1_r2_rd_width-1:0] imem_address_rd;
+
+wire    [d_width+6:0] imem_instruction;
+reg     [d_width+6:0] imem[0:imem_size];
+
+  
+//initial $readmemb("memory.txt", imem);
+  initial begin // TEST
+     imem[0] = 19'b1110000000000010000;	//jmp	16
+	  
+     imem[1] = 19'b1001011100000000000;	//inp	r7, 0(r0)
+     imem[2] = 19'b1000011000000000000;  	//ldm	r6, 0(r0)
+     imem[3] = 19'b1000111111000000001;  	//stm	r7, 1(r6)
+     imem[4] = 19'b0100111011000000001; 	//add	r6, r6, 1
+     imem[5] = 19'b1000111000000000000;	//stm	r6, 0(r0)
+     imem[6] = 19'b1111010000000000000;	//reti
+     
+     imem[16] = 19'b1111100000000000000;	//enai
+     
+     imem[17] = 19'b1000001100000000000; 	//ldm	r3, 0(r0)
+     imem[18] = 19'b0001001101101000000;	//sub	r3, r3, r2
+     imem[19] = 19'b1010000000011111101;	//bz	-3
+     
+     imem[20] = 19'b1000001101000000001;	//ldm	r3, 1(r2)
+     imem[21] = 19'b1001101100000001111; 	//out	r3, 15(r0)
+     imem[22] = 19'b0100001001000000001;	//add	r2, r2, 1
+     imem[23] = 19'b1110000000000010001;	//jmp	17
+  end
+
+//  initial begin //TEST 1A PASS
+//     imem[0] = 19'b1110000000000010000;	 	//jmp	16
+//     imem[1] = 19'b1111010000000000000;  	//reti
+//     
+//     imem[16] = 19'b1111100000000000000;	//enai
+//     imem[17] = 19'b0100000100000001010;  	//add	r1, r0, 10
+//     imem[18] = 19'b1000100100000000000;	//stm	r1, 0(r0)
+//     imem[19] = 19'b0101000100100000001;	//sub	r1, r1, 1
+//     imem[20] = 19'b1010100000011111101;	//bnz	-3
+//     imem[21] = 19'b1110000000000010101;	//jmp	21
+//  end
+
+//  initial begin // TEST1B PASS
+//     imem[0] = 19'b1110000000000010000;	 	//jmp	16
+//     imem[1] = 19'b1000011101000000000;	 	//ldm	r7, 0(r2)
+//     imem[2] = 19'b0101011111100000001;	 	//sub	r7, r7, 1
+//     imem[3] = 19'b1000111101000000000;	 	//stm	r7, 0(r2)
+//     imem[4] = 19'b1111010000000000000;	 	//reti
+//
+//     
+//     imem[16] = 19'b1111110000000000000;	//disi
+//     
+//     imem[17] = 19'b0100001000000010000;	//add	r2, r0, 16
+//     imem[18] = 19'b0100000100000001010;	//add	r1, r0, 10
+//     imem[19] = 19'b1000100101000000000;	//stm	r1, 0(r2)
+//     imem[20] = 19'b1111100000000000000;	//enai
+//     
+//     imem[21] = 19'b1000000101000000000; 	//ldm	r1, 0(r2)
+//     imem[22] = 19'b0100000100100000000;	//add	r1, r1, r0
+//     imem[23] = 19'b1010100000011111101;	//bnz	-3
+//     imem[24] = 19'b1110000000000011000;	//jmp	24
+//  end
+
+//  initial begin // TEST2 //PASS
+//     imem[0]  = 19'b1110000000000010000;	//jmp	16
+//
+//     imem[1]  = 19'b1111010000000000000;	//reti
+//     
+//     imem[16] = 19'b1111110000000000000;	//disi
+//     
+//     imem[17] = 19'b0100100100001111111;	//addc r1, r0, 127
+//     imem[18] = 19'b0100101000110000000;	//addc r2, r1, 128
+//     imem[19] = 19'b0100101101000000001;	//addc r3, r2, 1
+//     imem[20] = 19'b0101110001100000001;	//subc r4, r3, 1
+//     imem[21] = 19'b0101110110010000000;	//subc r5, r4, 128
+//     imem[22] = 19'b0101111010101111101;	//subc r6, r5, 125
+//     imem[23] = 19'b1110000000000010111;	//jmp 23
+//
+//	end
+
+//  initial begin // TEST3 //PASS
+//     imem[0]  = 19'b1110000000000010000;	//jmp	16
+//
+//     imem[1]  = 19'b1111010000000000000;	//reti
+//     
+//     imem[16] = 19'b1111110000000000000;	//disi
+//     
+//     imem[17] = 19'b0100000100000000001;	//add r1, r0, 1
+//     imem[18] = 19'b0100001000000000100;	//add r2, r0, 4
+//     imem[19] = 19'b0100001100000010000;	//add r3, r0, 16
+//     imem[20] = 19'b0100010000001000000;	//add r4, r0, 64
+//     imem[21] = 19'b0000010100000000000;	//add r5, r0, r0
+//     imem[22] = 19'b0010110110100100000;	//or  r5, r5, r1
+//     imem[23] = 19'b0010110110101000000;  //or  r5, r5, r2
+//     imem[24] = 19'b0010110110101100000;	//or  r5, r5, r3
+//     imem[25] = 19'b0010110110110000000;  //or  r5, r5, r4
+//     
+//     imem[26] = 19'b1100000100100100000;  //shl r1, r1, 1
+//     imem[27] = 19'b1100001001000100000;  //shl r2, r2, 1
+//     imem[28] = 19'b1100001101100100000;  //shl r3, r3, 1
+//     imem[29] = 19'b1100010010000100000;	//shl r4, r4, 1
+//     imem[30] = 19'b0010110110100100000;	//or  r5, r5, r1
+//     imem[31] = 19'b0010110110101000000;	//or  r5, r5, r2
+//     imem[32] = 19'b0010110110101100000;	//or  r5, r5, r3
+//     imem[33] = 19'b0010110110110000000;	//or  r5, r5, r4
+//                    
+//     imem[34] = 19'b1101100100100100011;	//ror r1, r1, 1
+//     imem[35] = 19'b1101101001000100011;	//ror r2, r2, 1
+//     imem[36] = 19'b1101101101100100011;	//ror r3, r3, 1
+//     imem[37] = 19'b1101110010000100011;	//ror r4, r4, 1
+//     imem[38] = 19'b0011011010100100000;	//xor r6, r5, r1
+//     imem[39] = 19'b0011011011001000000;  //xor r6, r6, r2
+//     imem[40] = 19'b0011011011001100000;  //xor r6, r6, r3
+//     imem[41] = 19'b0011011011010000000;  //xor r6, r6, r4
+//     
+//     imem[42] = 19'b0011111110111000000;	//msk r7, r5, r6
+//     imem[43] = 19'b0011011111100100000;	//xor r7, r7, r1
+//     imem[44] = 19'b0011011111101000000;  //xor r7, r7, r2
+//     imem[45] = 19'b0011011111101100000;  //xor r7, r7, r3
+//     imem[46] = 19'b0011011111110000000;  //xor r7, r7, r4
+//     
+//     imem[47] = 19'b1110000000000101111;	//jmp 47
+// end
+
+// initial begin // TEST4A //PASS
+//     imem[0] = 19'b1110000000000010000;	 //jmp	16
+//     
+//     imem[1] = 19'b1111010000000000000;	 //reti
+//     
+//     imem[16] = 19'b1111100000000000000;	//enai
+//     imem[17] = 19'b1001100100000001111;	//out	r1, 15(r0)
+//     imem[18] = 19'b0100000100100000001;	//add	r1, r1, 1
+//     imem[19] = 19'b0101000000100001010;	//sub	r0, r1, 10
+//     imem[20] = 19'b1010100000011111100;	//bnz	-4
+//     imem[21] = 19'b1110000000000010101;	//jmp	21
+// end
+
+//	initial begin // TEST4B
+//     imem[0]  = 19'b1110000000000010000;	//jmp	16
+//
+//     imem[1]  = 19'b1111010000000000000;	//reti
+//     
+//     imem[2]  = 19'b1000111000011111111;	//stm	r6, 255(r0)
+//     imem[3]  = 19'b0000011000000000000;	//add	r6, r0, r0
+//     imem[4]  = 19'b0000011100000000000;	//add	r7, r0, r0
+//     
+//     imem[5]  = 19'b0000000010100000000;	//add	r0, r5, r0
+//     imem[6]  = 19'b1010000000000000100;	//bz	4
+//     
+//     imem[7]  = 19'b0000011111110000000;	//add	r7, r7, r4
+//     imem[8]  = 19'b0100111011000000000;	//addc r6, r6, 0
+//     imem[9]  = 19'b0101010110100000001;	//sub	r5, r5, 1
+//     imem[10] = 19'b1010100000011111100;	//bnz	-4
+//     
+//     imem[11] = 19'b1000010100011111111;	//ldm	r5, 255(r0)
+//     imem[12] = 19'b1000111010100000000;	//stm	r6, 0(r5)
+//     imem[13] = 19'b1000111110100000001;	//stm	r7, 1(r5)
+//     imem[14] = 19'b1111000000000000000;	//ret
+//     
+//     imem[16] = 19'b1111110000000000000;	//disi
+//     imem[17] = 19'b0100000100000001111;	//add	r1, r0, 15
+//     imem[18] = 19'b0100001000000000100;	//add	r2, r0, 4
+//     imem[19] = 19'b0100001100000000001;	//add	r3, r0, 1
+//     imem[20] = 19'b1000101100000000001;	//stm	r3, 1(r0)
+//     imem[21] = 19'b0100001100000000010;	//add	r3, r0, 2
+//     imem[22] = 19'b1000101100000000011;	//stm	r3, 3(r0)
+//     imem[23] = 19'b0100010000000000011;	//add	r4, r0, 3
+//     
+//     imem[24] = 19'b0000010101100000000;	//add	r5, r3, r0
+//     imem[25] = 19'b0000011001000000000;	//add	r6, r2, r0
+//     imem[26] = 19'b1110100000000000010;	//jsb	2
+//     imem[27] = 19'b0000001110000000000;	//add	r3, r4, r0
+//     imem[28] = 19'b0100010010000000001;	//add	r4, r4, 1
+//     imem[29] = 19'b0100001001000000010;	//add	r2, r2, 2
+//     imem[30] = 19'b0101000100100000001;	//sub	r1, r1, 1
+//     imem[31] = 19'b1010100000011111000;	//bnz	-8
+//     
+//     imem[32] = 19'b1110000000000100000;	//jmp	32
+//	end
+
+assign imem_instruction     = imem[imem_read_address];
+assign imem_opcode6         = imem_instruction[18:13];
+assign imem_pc_address      = imem_instruction[11:0];
+assign imem_const_disp      = imem_instruction[7:0];
+assign imem_address_r1      = imem_instruction[10:8];
+assign imem_address_r2      = imem_instruction[7:5];
+assign imem_address_rd      = imem_instruction[13:11];
+
+endmodule

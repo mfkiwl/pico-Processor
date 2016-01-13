@@ -1,0 +1,11 @@
+`timescale 1ps/1ps
+module buffer (buff_data_out, buff_data_in);
+
+parameter d_width = 8;
+
+output [d_width-1:0]buff_data_out;
+input  [d_width-1:0]buff_data_in;
+
+assign buff_data_out = buff_data_in;
+
+endmodule

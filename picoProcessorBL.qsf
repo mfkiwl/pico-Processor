@@ -1,0 +1,139 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, the Altera Quartus II License Agreement,
+# the Altera MegaCore Function License Agreement, or other 
+# applicable license agreement, including, without limitation, 
+# that your use is for the sole purpose of programming logic 
+# devices manufactured by Altera and sold by Altera or its 
+# authorized distributors.  Please refer to the applicable 
+# agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 15.0.0 Build 145 04/22/2015 SJ Full Version
+# Date created = 16:54:54  December 03, 2015
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		picoProcessorBL_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE30F23I7
+set_global_assignment -name TOP_LEVEL_ENTITY picoProcessorBL
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 15.0.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:54:54  DECEMBER 03, 2015"
+set_global_assignment -name LAST_QUARTUS_VERSION 15.0.0
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP "-40"
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+set_global_assignment -name EDA_SIMULATION_TOOL "QuestaSim (Verilog)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name FLOW_ENABLE_RTL_VIEWER ON
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH tb_pico_processorBL -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_pico_processorBL -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_pico_processorBL
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_pico_processorBL -section_id tb_pico_processorBL
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_pico_processorBL.v -section_id tb_pico_processorBL
+set_global_assignment -name SDC_FILE picoProcessor.out.sdc
+set_global_assignment -name VERILOG_FILE tri_state_buffer.v
+set_global_assignment -name VERILOG_FILE time_display.v
+set_global_assignment -name VERILOG_FILE tb_pico_processor.v
+set_global_assignment -name VERILOG_FILE T_FF.v
+set_global_assignment -name VERILOG_FILE stack.v
+set_global_assignment -name VERILOG_FILE program_counter.v
+set_global_assignment -name VERILOG_FILE picoProcessor.v
+set_global_assignment -name VERILOG_FILE mux5.v
+set_global_assignment -name VERILOG_FILE mux3.v
+set_global_assignment -name VERILOG_FILE mux2.v
+set_global_assignment -name VERILOG_FILE interrupt_pc.v
+set_global_assignment -name VERILOG_FILE imem.v
+set_global_assignment -name VERILOG_FILE gpr.v
+set_global_assignment -name VERILOG_FILE full_adder.v
+set_global_assignment -name VERILOG_FILE extension.v
+set_global_assignment -name VERILOG_FILE dynamic_display.v
+set_global_assignment -name VERILOG_FILE dmem.v
+set_global_assignment -name VERILOG_FILE display_module.v
+set_global_assignment -name VERILOG_FILE controller.v
+set_global_assignment -name VERILOG_FILE condition_code.v
+set_global_assignment -name VERILOG_FILE Chattering.v
+set_global_assignment -name VERILOG_FILE buffer.v
+set_global_assignment -name VERILOG_FILE alushifter.v
+set_global_assignment -name VERILOG_FILE picoProcessorBL.v
+set_global_assignment -name VERILOG_FILE tb_pico_processorBL.v
+set_global_assignment -name VERILOG_FILE bcd.v
+set_global_assignment -name VERILOG_FILE Clock_Divider10Mhz.v
+set_global_assignment -name VERILOG_FILE Clock_Divider5Mhz.v
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+set_location_assignment PIN_B5 -to SEG_A[0]
+set_location_assignment PIN_A4 -to SEG_A[1]
+set_location_assignment PIN_B3 -to SEG_A[2]
+set_location_assignment PIN_B4 -to SEG_A[3]
+set_location_assignment PIN_A5 -to SEG_A[4]
+set_location_assignment PIN_A6 -to SEG_A[5]
+set_location_assignment PIN_B6 -to SEG_A[6]
+set_location_assignment PIN_A3 -to SEG_A[7]
+set_location_assignment PIN_A12 -to clk
+set_location_assignment PIN_E15 -to int_req_btn
+set_location_assignment PIN_B10 -to port_ready_btn
+set_location_assignment PIN_F15 -to reset_btn
+set_location_assignment PIN_A10 -to start_stop_btn
+set_location_assignment PIN_B8 -to BL_debug_branch_taken
+set_location_assignment PIN_C8 -to BL_debug_cc_c
+set_location_assignment PIN_F8 -to BL_debug_cc_z
+set_location_assignment PIN_A8 -to BL_debug_pico_int_ack
+set_location_assignment PIN_C3 -to SEG_A_SEL[3]
+set_location_assignment PIN_C4 -to SEG_A_SEL[2]
+set_location_assignment PIN_E5 -to SEG_A_SEL[1]
+set_location_assignment PIN_E6 -to SEG_A_SEL[0]
+set_location_assignment PIN_C6 -to SEG_B[7]
+set_location_assignment PIN_F7 -to SEG_B[6]
+set_location_assignment PIN_E7 -to SEG_B[5]
+set_location_assignment PIN_C7 -to SEG_B[4]
+set_location_assignment PIN_B7 -to SEG_B[3]
+set_location_assignment PIN_D6 -to SEG_B[2]
+set_location_assignment PIN_A7 -to SEG_B[1]
+set_location_assignment PIN_D7 -to SEG_B[0]
+set_location_assignment PIN_H10 -to SEG_B_SEL[3]
+set_location_assignment PIN_G9 -to SEG_B_SEL[2]
+set_location_assignment PIN_G8 -to SEG_B_SEL[1]
+set_location_assignment PIN_G7 -to SEG_B_SEL[0]
+set_global_assignment -name CDF_FILE output_files/ppProgrammer.cdf
+set_location_assignment PIN_E11 -to BL_debug_pico_port_data[0]
+set_location_assignment PIN_F11 -to BL_debug_pico_port_data[1]
+set_location_assignment PIN_A13 -to BL_debug_pico_port_data[2]
+set_location_assignment PIN_B13 -to BL_debug_pico_port_data[3]
+set_location_assignment PIN_C13 -to BL_debug_pico_port_data[4]
+set_location_assignment PIN_D13 -to BL_debug_pico_port_data[5]
+set_location_assignment PIN_E13 -to BL_debug_pico_port_data[6]
+set_location_assignment PIN_F13 -to BL_debug_pico_port_data[7]
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

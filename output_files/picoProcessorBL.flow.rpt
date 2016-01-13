@@ -1,0 +1,139 @@
+Flow report for picoProcessorBL
+Sun Dec 27 12:01:10 2015
+Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus II License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Flow Summary                                                                     ;
++------------------------------------+---------------------------------------------+
+; Flow Status                        ; Successful - Sun Dec 27 12:01:10 2015       ;
+; Quartus II 64-Bit Version          ; 15.0.0 Build 145 04/22/2015 SJ Full Version ;
+; Revision Name                      ; picoProcessorBL                             ;
+; Top-level Entity Name              ; picoProcessorBL                             ;
+; Family                             ; Cyclone IV E                                ;
+; Device                             ; EP4CE30F23I7                                ;
+; Timing Models                      ; Final                                       ;
+; Total logic elements               ; 3,462 / 28,848 ( 12 % )                     ;
+;     Total combinational functions  ; 2,458 / 28,848 ( 9 % )                      ;
+;     Dedicated logic registers      ; 2,285 / 28,848 ( 8 % )                      ;
+; Total registers                    ; 2285                                        ;
+; Total pins                         ; 61 / 329 ( 19 % )                           ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0 / 608,256 ( 0 % )                         ;
+; Embedded Multiplier 9-bit elements ; 0 / 132 ( 0 % )                             ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                               ;
++------------------------------------+---------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 12/27/2015 11:59:21 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; picoProcessorBL     ;
++-------------------+---------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                 ;
++--------------------------------------+---------------------------------------+---------------+-------------+---------------------+
+; Assignment Name                      ; Value                                 ; Default Value ; Entity Name ; Section Id          ;
++--------------------------------------+---------------------------------------+---------------+-------------+---------------------+
+; COMPILER_SIGNATURE_ID                ; 229044585343903.145118516105320       ; --            ; --          ; --                  ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                    ; --            ; --          ; tb_pico_processorBL ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb_pico_processorBL                   ; --            ; --          ; eda_simulation      ;
+; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                           ; --            ; --          ; eda_simulation      ;
+; EDA_SIMULATION_TOOL                  ; QuestaSim (Verilog)                   ; <None>        ; --          ; --                  ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                       ; --            ; --          ; eda_simulation      ;
+; EDA_TEST_BENCH_FILE                  ; tb_pico_processorBL.v                 ; --            ; --          ; tb_pico_processorBL ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_pico_processorBL                   ; --            ; --          ; tb_pico_processorBL ;
+; EDA_TEST_BENCH_NAME                  ; tb_pico_processorBL                   ; --            ; --          ; eda_simulation      ;
+; EDA_TIME_SCALE                       ; 1 ps                                  ; --            ; --          ; eda_simulation      ;
+; FLOW_ENABLE_RTL_VIEWER               ; On                                    ; Off           ; --          ; --                  ;
+; MAX_CORE_JUNCTION_TEMP               ; 100                                   ; --            ; --          ; --                  ;
+; MIN_CORE_JUNCTION_TEMP               ; -40                                   ; --            ; --          ; --                  ;
+; NOMINAL_CORE_SUPPLY_VOLTAGE          ; 1.2V                                  ; --            ; --          ; --                  ;
+; PARTITION_COLOR                      ; 16764057                              ; --            ; --          ; Top                 ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT_AND_ROUTING                 ; --            ; --          ; Top                 ;
+; PARTITION_NETLIST_TYPE               ; SOURCE                                ; --            ; --          ; Top                 ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                   ; --            ; --          ; --                  ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW ; --            ; --          ; --                  ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                          ; --            ; --          ; --                  ;
++--------------------------------------+---------------------------------------+---------------+-------------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:30     ; 1.0                     ; 720 MB              ; 00:00:32                           ;
+; Fitter                    ; 00:00:32     ; 1.5                     ; 1525 MB             ; 00:00:25                           ;
+; Assembler                 ; 00:00:19     ; 1.0                     ; 619 MB              ; 00:00:02                           ;
+; TimeQuest Timing Analyzer ; 00:00:15     ; 1.8                     ; 788 MB              ; 00:00:06                           ;
+; EDA Netlist Writer        ; 00:00:14     ; 1.0                     ; 611 MB              ; 00:00:04                           ;
+; Total                     ; 00:01:50     ; --                      ; --                  ; 00:01:09                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                        ;
++---------------------------+------------------+-----------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
++---------------------------+------------------+-----------+------------+----------------+
+; Analysis & Synthesis      ; Jay-PC           ; Windows 7 ; 6.1        ; x86_64         ;
+; Fitter                    ; Jay-PC           ; Windows 7 ; 6.1        ; x86_64         ;
+; Assembler                 ; Jay-PC           ; Windows 7 ; 6.1        ; x86_64         ;
+; TimeQuest Timing Analyzer ; Jay-PC           ; Windows 7 ; 6.1        ; x86_64         ;
+; EDA Netlist Writer        ; Jay-PC           ; Windows 7 ; 6.1        ; x86_64         ;
++---------------------------+------------------+-----------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off picoProcessorBL -c picoProcessorBL
+quartus_fit --read_settings_files=off --write_settings_files=off picoProcessorBL -c picoProcessorBL
+quartus_asm --read_settings_files=off --write_settings_files=off picoProcessorBL -c picoProcessorBL
+quartus_sta picoProcessorBL -c picoProcessorBL
+quartus_eda --read_settings_files=off --write_settings_files=off picoProcessorBL -c picoProcessorBL
+
+
+

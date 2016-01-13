@@ -1,0 +1,32 @@
+
+module dmem(clk, reset, dmem_alu_result, dmem_in, dmem_out, dmem_write_en);
+
+parameter d_width = 8;
+parameter dmem_width = 256;
+
+input                   clk;
+input                   reset;
+input                   dmem_write_en;
+input  [d_width-1:0]    dmem_alu_result;
+input  [d_width-1:0]    dmem_in;
+
+output [d_width-1:0]    dmem_out;
+  
+wire    [d_width-1:0]    dmem_out;
+reg    [d_width-1:0]    dmem_table   [dmem_width-1:0];
+  
+ // always@(negedge reset or dmem_in or dmem_alu_result or dmem_write_en)
+//begin
+assign dmem_out = dmem_table[dmem_alu_result];
+//end
+
+always@(posedge clk)
+begin
+
+   if(dmem_write_en == 1)
+  begin
+    dmem_table[dmem_alu_result] <= dmem_in; // STORE use alu for calculating an effective addr
+  end
+end
+  
+endmodule

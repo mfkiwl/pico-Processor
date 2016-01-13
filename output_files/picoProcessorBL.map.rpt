@@ -1,0 +1,1025 @@
+Analysis & Synthesis report for picoProcessorBL
+Sun Dec 27 11:59:41 2015
+Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. User-Specified and Inferred Latches
+  9. Registers Removed During Synthesis
+ 10. Removed Registers Triggering Further Register Optimizations
+ 11. General Register Statistics
+ 12. Inverted Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Parameter Settings for User Entity Instance: picoProcessor:ppBL
+ 15. Parameter Settings for User Entity Instance: picoProcessor:ppBL|controller:pico_controller
+ 16. Parameter Settings for User Entity Instance: picoProcessor:ppBL|mux5:pico_mux5
+ 17. Parameter Settings for User Entity Instance: picoProcessor:ppBL|mux3:pico_mux3
+ 18. Parameter Settings for User Entity Instance: picoProcessor:ppBL|mux2:pico_mux2_1_r2_rd
+ 19. Parameter Settings for User Entity Instance: picoProcessor:ppBL|mux2:pico_mux2_1_gpr2_const
+ 20. Parameter Settings for User Entity Instance: picoProcessor:ppBL|mux2:pico_mux2_1_1_disp
+ 21. Parameter Settings for User Entity Instance: picoProcessor:ppBL|stack:pico_stack
+ 22. Parameter Settings for User Entity Instance: picoProcessor:ppBL|program_counter:pico_program_counter
+ 23. Parameter Settings for User Entity Instance: picoProcessor:ppBL|imem:pico_imem
+ 24. Parameter Settings for User Entity Instance: picoProcessor:ppBL|extension:pico_extension
+ 25. Parameter Settings for User Entity Instance: picoProcessor:ppBL|full_adder:pico_full_adder
+ 26. Parameter Settings for User Entity Instance: picoProcessor:ppBL|gpr:pico_gpr
+ 27. Parameter Settings for User Entity Instance: picoProcessor:ppBL|dmem:pico_dmem
+ 28. Parameter Settings for User Entity Instance: picoProcessor:ppBL|alushifter:pico_alushifter
+ 29. Parameter Settings for User Entity Instance: picoProcessor:ppBL|interrupt_pc:pico_interrupt_pc
+ 30. Parameter Settings for User Entity Instance: picoProcessor:ppBL|tri_state_buffer:pico_tri_state_buffer
+ 31. Parameter Settings for User Entity Instance: picoProcessor:ppBL|buffer:pico_buffer
+ 32. Parameter Settings for User Entity Instance: dynamic_display:dynamic_disp_A
+ 33. Parameter Settings for User Entity Instance: dynamic_display:dynamic_disp_B
+ 34. Port Connectivity Checks: "bcd:program_counter_bcd"
+ 35. Port Connectivity Checks: "Clock_Divider5Mhz:CD_5Mhz"
+ 36. Port Connectivity Checks: "picoProcessor:ppBL|mux2:pico_mux2_1_1_disp"
+ 37. Port Connectivity Checks: "picoProcessor:ppBL|mux5:pico_mux5"
+ 38. Port Connectivity Checks: "picoProcessor:ppBL"
+ 39. Post-Synthesis Netlist Statistics for Top Partition
+ 40. Elapsed Time Per Partition
+ 41. Analysis & Synthesis Messages
+ 42. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus II License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sun Dec 27 11:59:41 2015       ;
+; Quartus II 64-Bit Version          ; 15.0.0 Build 145 04/22/2015 SJ Full Version ;
+; Revision Name                      ; picoProcessorBL                             ;
+; Top-level Entity Name              ; picoProcessorBL                             ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 4,599                                       ;
+;     Total combinational functions  ; 2,457                                       ;
+;     Dedicated logic registers      ; 2,285                                       ;
+; Total registers                    ; 2285                                        ;
+; Total pins                         ; 61                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE30F23I7       ;                    ;
+; Top-level entity name                                                      ; picoProcessorBL    ; picoProcessorBL    ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone V          ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ; < 0.1%      ;
+;     Processors 5-8         ;   0.0%      ;
++----------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                     ;
++----------------------------------+-----------------+------------------------+--------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                       ; Library ;
++----------------------------------+-----------------+------------------------+--------------------------------------------------------------------+---------+
+; tri_state_buffer.v               ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/tri_state_buffer.v  ;         ;
+; time_display.v                   ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/time_display.v      ;         ;
+; T_FF.v                           ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/T_FF.v              ;         ;
+; stack.v                          ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/stack.v             ;         ;
+; program_counter.v                ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/program_counter.v   ;         ;
+; picoProcessor.v                  ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/picoProcessor.v     ;         ;
+; mux5.v                           ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/mux5.v              ;         ;
+; mux3.v                           ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/mux3.v              ;         ;
+; mux2.v                           ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/mux2.v              ;         ;
+; interrupt_pc.v                   ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/interrupt_pc.v      ;         ;
+; imem.v                           ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/imem.v              ;         ;
+; gpr.v                            ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/gpr.v               ;         ;
+; full_adder.v                     ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/full_adder.v        ;         ;
+; extension.v                      ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/extension.v         ;         ;
+; dynamic_display.v                ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/dynamic_display.v   ;         ;
+; dmem.v                           ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/dmem.v              ;         ;
+; display_module.v                 ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/display_module.v    ;         ;
+; controller.v                     ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/controller.v        ;         ;
+; condition_code.v                 ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/condition_code.v    ;         ;
+; buffer.v                         ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/buffer.v            ;         ;
+; alushifter.v                     ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/alushifter.v        ;         ;
+; picoProcessorBL.v                ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/picoProcessorBL.v   ;         ;
+; bcd.v                            ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/bcd.v               ;         ;
+; Clock_Divider5Mhz.v              ; yes             ; User Verilog HDL File  ; C:/Users/Jay/Desktop/picoProcessor Board Level/Clock_Divider5Mhz.v ;         ;
++----------------------------------+-----------------+------------------------+--------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                   ;
++---------------------------------------------+-----------------+
+; Resource                                    ; Usage           ;
++---------------------------------------------+-----------------+
+; Estimated Total logic elements              ; 4,599           ;
+;                                             ;                 ;
+; Total combinational functions               ; 2457            ;
+; Logic element usage by number of LUT inputs ;                 ;
+;     -- 4 input functions                    ; 1950            ;
+;     -- 3 input functions                    ; 395             ;
+;     -- <=2 input functions                  ; 112             ;
+;                                             ;                 ;
+; Logic elements by mode                      ;                 ;
+;     -- normal mode                          ; 2380            ;
+;     -- arithmetic mode                      ; 77              ;
+;                                             ;                 ;
+; Total registers                             ; 2285            ;
+;     -- Dedicated logic registers            ; 2285            ;
+;     -- I/O registers                        ; 0               ;
+;                                             ;                 ;
+; I/O pins                                    ; 61              ;
+;                                             ;                 ;
+; Embedded Multiplier 9-bit elements          ; 0               ;
+;                                             ;                 ;
+; Maximum fan-out node                        ; reset_btn~input ;
+; Maximum fan-out                             ; 2314            ;
+; Total fan-out                               ; 18383           ;
+; Average fan-out                             ; 3.77            ;
++---------------------------------------------+-----------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                ;
++----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                   ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                      ; Library Name ;
++----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------+--------------+
+; |picoProcessorBL                             ; 2457 (0)          ; 2285 (0)     ; 0           ; 0            ; 0       ; 0         ; 61   ; 0            ; |picoProcessorBL                                                         ; work         ;
+;    |bcd:port_address_bcd|                    ; 45 (45)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|bcd:port_address_bcd                                    ; work         ;
+;    |bcd:port_data_bcd|                       ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|bcd:port_data_bcd                                       ; work         ;
+;    |bcd:program_counter_bcd|                 ; 26 (26)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|bcd:program_counter_bcd                                 ; work         ;
+;    |dynamic_display:dynamic_disp_A|          ; 63 (63)           ; 40 (40)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|dynamic_display:dynamic_disp_A                          ; work         ;
+;    |dynamic_display:dynamic_disp_B|          ; 21 (21)           ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|dynamic_display:dynamic_disp_B                          ; work         ;
+;    |picoProcessor:ppBL|                      ; 2222 (16)         ; 2185 (1)     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL                                      ; work         ;
+;       |alushifter:pico_alushifter|           ; 250 (250)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|alushifter:pico_alushifter           ; work         ;
+;       |condition_code:pico_condition_code|   ; 4 (4)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|condition_code:pico_condition_code   ; work         ;
+;       |controller:pico_controller|           ; 57 (57)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|controller:pico_controller           ; work         ;
+;       |dmem:pico_dmem|                       ; 280 (280)         ; 2048 (2048)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|dmem:pico_dmem                       ; work         ;
+;       |full_adder:pico_full_adder|           ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|full_adder:pico_full_adder           ; work         ;
+;       |gpr:pico_gpr|                         ; 87 (87)           ; 56 (56)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|gpr:pico_gpr                         ; work         ;
+;       |imem:pico_imem|                       ; 44 (44)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|imem:pico_imem                       ; work         ;
+;       |interrupt_pc:pico_interrupt_pc|       ; 1 (1)             ; 15 (15)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|interrupt_pc:pico_interrupt_pc       ; work         ;
+;       |mux2:pico_mux2_1_gpr2_const|          ; 11 (11)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|mux2:pico_mux2_1_gpr2_const          ; work         ;
+;       |mux2:pico_mux2_1_r2_rd|               ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|mux2:pico_mux2_1_r2_rd               ; work         ;
+;       |mux3:pico_mux3|                       ; 1377 (1377)       ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|mux3:pico_mux3                       ; work         ;
+;       |mux5:pico_mux5|                       ; 62 (62)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|mux5:pico_mux5                       ; work         ;
+;       |program_counter:pico_program_counter| ; 6 (6)             ; 12 (12)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|program_counter:pico_program_counter ; work         ;
+;       |stack:pico_stack|                     ; 10 (10)           ; 51 (51)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|picoProcessor:ppBL|stack:pico_stack                     ; work         ;
+;    |time_display:td_A|                       ; 24 (0)            ; 27 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|time_display:td_A                                       ; work         ;
+;       |display_module:dm1|                   ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|time_display:td_A|display_module:dm1                    ; work         ;
+;       |display_module:dm2|                   ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|time_display:td_A|display_module:dm2                    ; work         ;
+;       |display_module:dm3|                   ; 3 (3)             ; 6 (6)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|time_display:td_A|display_module:dm3                    ; work         ;
+;       |display_module:dm4|                   ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|time_display:td_A|display_module:dm4                    ; work         ;
+;    |time_display:td_B|                       ; 24 (0)            ; 26 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|time_display:td_B                                       ; work         ;
+;       |display_module:dm1|                   ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|time_display:td_B|display_module:dm1                    ; work         ;
+;       |display_module:dm2|                   ; 3 (3)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|time_display:td_B|display_module:dm2                    ; work         ;
+;       |display_module:dm3|                   ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|time_display:td_B|display_module:dm3                    ; work         ;
+;       |display_module:dm4|                   ; 7 (7)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |picoProcessorBL|time_display:td_B|display_module:dm4                    ; work         ;
++----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                                                                      ;
++-------------------------------------------------------------------------------+-----------------------------------------------------------------+------------------------+
+; Latch Name                                                                    ; Latch Enable Signal                                             ; Free of Timing Hazards ;
++-------------------------------------------------------------------------------+-----------------------------------------------------------------+------------------------+
+; picoProcessor:ppBL|controller:pico_controller|controller_branch_taken         ; picoProcessor:ppBL|controller:pico_controller|Selector20        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_alu_fn[2]            ; picoProcessor:ppBL|controller:pico_controller|Selector29        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_alu_fn[3]            ; picoProcessor:ppBL|controller:pico_controller|Selector29        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_mux2_1_r2_rd[0]      ; picoProcessor:ppBL|controller:pico_controller|Selector29        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_mux2_1_gpr2_const[0] ; picoProcessor:ppBL|controller:pico_controller|Selector29        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_alu_fn[1]            ; picoProcessor:ppBL|controller:pico_controller|Selector29        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_alu_fn[0]            ; picoProcessor:ppBL|controller:pico_controller|Selector29        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_reti_signal          ; picoProcessor:ppBL|controller:pico_controller|Selector29        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_mux5_1[2]            ; picoProcessor:ppBL|controller:pico_controller|Selector20        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_mux5_1[1]            ; picoProcessor:ppBL|controller:pico_controller|Selector20        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_mux2_1_1_or_disp[0]  ; picoProcessor:ppBL|controller:pico_controller|Selector20        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_mux5_1[0]            ; picoProcessor:ppBL|controller:pico_controller|Selector20        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_mux3_1[0]            ; picoProcessor:ppBL|controller:pico_controller|Selector29        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_mux3_1[1]            ; picoProcessor:ppBL|controller:pico_controller|Selector29        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_gpr_write_en         ; picoProcessor:ppBL|controller:pico_controller|Selector20        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_int_en               ; picoProcessor:ppBL|controller:pico_controller|controller_int_en ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_stack_en             ; picoProcessor:ppBL|controller:pico_controller|Selector29        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_push_pop             ; picoProcessor:ppBL|controller:pico_controller|Selector29        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_dmem_write_en        ; picoProcessor:ppBL|controller:pico_controller|Selector20        ; yes                    ;
+; picoProcessor:ppBL|controller:pico_controller|controller_tri_state_buffer     ; picoProcessor:ppBL|controller:pico_controller|Selector29        ; yes                    ;
+; Number of user-specified and inferred latches = 20                            ;                                                                 ;                        ;
++-------------------------------------------------------------------------------+-----------------------------------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                              ;
++------------------------------------------------------+----------------------------------------------------------+
+; Register name                                        ; Reason for Removal                                       ;
++------------------------------------------------------+----------------------------------------------------------+
+; time_display:td_B|display_module:dm4|SEG[0]          ; Stuck at GND due to stuck port data_in                   ;
+; time_display:td_B|display_module:dm3|SEG[0]          ; Stuck at GND due to stuck port data_in                   ;
+; time_display:td_B|display_module:dm2|SEG[0]          ; Stuck at GND due to stuck port data_in                   ;
+; time_display:td_B|display_module:dm1|SEG[0]          ; Stuck at GND due to stuck port data_in                   ;
+; time_display:td_A|display_module:dm4|SEG[0]          ; Stuck at GND due to stuck port data_in                   ;
+; time_display:td_A|display_module:dm3|SEG[0]          ; Stuck at GND due to stuck port data_in                   ;
+; time_display:td_A|display_module:dm2|SEG[0]          ; Stuck at GND due to stuck port data_in                   ;
+; time_display:td_A|display_module:dm1|SEG[0]          ; Stuck at GND due to stuck port data_in                   ;
+; dynamic_display:dynamic_disp_B|GATE[0]               ; Merged with dynamic_display:dynamic_disp_A|GATE[0]       ;
+; dynamic_display:dynamic_disp_B|GATE[1]               ; Merged with dynamic_display:dynamic_disp_A|GATE[1]       ;
+; dynamic_display:dynamic_disp_B|GATE[2]               ; Merged with dynamic_display:dynamic_disp_A|GATE[2]       ;
+; dynamic_display:dynamic_disp_B|GATE[3]               ; Merged with dynamic_display:dynamic_disp_A|GATE[3]       ;
+; dynamic_display:dynamic_disp_B|SEC_SIG               ; Merged with dynamic_display:dynamic_disp_A|SEC_SIG       ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[27]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[27] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[26]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[26] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[25]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[25] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[24]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[24] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[23]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[23] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[22]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[22] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[21]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[21] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[20]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[20] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[19]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[19] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[18]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[18] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[17]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[17] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[16]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[16] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[15]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[15] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[14]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[14] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[13]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[13] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[12]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[12] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[11]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[11] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[10]         ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[10] ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[9]          ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[9]  ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[8]          ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[8]  ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[7]          ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[7]  ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[6]          ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[6]  ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[5]          ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[5]  ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[4]          ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[4]  ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[3]          ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[3]  ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[2]          ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[2]  ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[1]          ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[1]  ;
+; dynamic_display:dynamic_disp_B|SEC_COUNT[0]          ; Merged with dynamic_display:dynamic_disp_A|SEC_COUNT[0]  ;
+; dynamic_display:dynamic_disp_B|SEG_A[0]              ; Stuck at GND due to stuck port data_in                   ;
+; dynamic_display:dynamic_disp_A|SEG_A[0]              ; Stuck at GND due to stuck port data_in                   ;
+; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][7] ; Stuck at GND due to stuck port clock_enable              ;
+; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][6] ; Stuck at GND due to stuck port clock_enable              ;
+; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][5] ; Stuck at GND due to stuck port clock_enable              ;
+; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][4] ; Stuck at GND due to stuck port clock_enable              ;
+; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][3] ; Stuck at GND due to stuck port clock_enable              ;
+; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][2] ; Stuck at GND due to stuck port clock_enable              ;
+; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][1] ; Stuck at GND due to stuck port clock_enable              ;
+; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][0] ; Stuck at GND due to stuck port clock_enable              ;
+; time_display:td_B|display_module:dm2|SEG[6]          ; Merged with time_display:td_A|display_module:dm3|SEG[6]  ;
+; time_display:td_A|display_module:dm3|SEG[7]          ; Merged with time_display:td_A|display_module:dm3|SEG[4]  ;
+; time_display:td_B|display_module:dm2|SEG[7]          ; Merged with time_display:td_B|display_module:dm2|SEG[4]  ;
+; Total Number of Removed Registers = 54               ;                                                          ;
++------------------------------------------------------+----------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                   ;
++------------------------------------------------------+--------------------------------+-------------------------------------------------------+
+; Register name                                        ; Reason for Removal             ; Registers Removed due to This Register                ;
++------------------------------------------------------+--------------------------------+-------------------------------------------------------+
+; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][7] ; Stuck at GND                   ; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][2], ;
+;                                                      ; due to stuck port clock_enable ; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][1]  ;
+; time_display:td_B|display_module:dm4|SEG[0]          ; Stuck at GND                   ; dynamic_display:dynamic_disp_B|SEG_A[0]               ;
+;                                                      ; due to stuck port data_in      ;                                                       ;
+; time_display:td_A|display_module:dm4|SEG[0]          ; Stuck at GND                   ; dynamic_display:dynamic_disp_A|SEG_A[0]               ;
+;                                                      ; due to stuck port data_in      ;                                                       ;
+; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][6] ; Stuck at GND                   ; picoProcessor:ppBL|gpr:pico_gpr|register_table[0][3]  ;
+;                                                      ; due to stuck port clock_enable ;                                                       ;
++------------------------------------------------------+--------------------------------+-------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 2285  ;
+; Number of registers using Synchronous Clear  ; 28    ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 2285  ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 2172  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; dynamic_display:dynamic_disp_A|GATE[0] ; 4       ;
+; Total number of inverted registers = 1 ;         ;
++----------------------------------------+---------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------+
+; 16:1               ; 14 bits   ; 140 LEs       ; 42 LEs               ; 98 LEs                 ; Yes        ; |picoProcessorBL|dynamic_display:dynamic_disp_A|SEG_A[2]                            ;
+; 12:1               ; 8 bits    ; 64 LEs        ; 40 LEs               ; 24 LEs                 ; Yes        ; |picoProcessorBL|picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[10] ;
+; 10:1               ; 4 bits    ; 24 LEs        ; 20 LEs               ; 4 LEs                  ; Yes        ; |picoProcessorBL|picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[2]  ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |picoProcessorBL|picoProcessor:ppBL|alushifter:pico_alushifter|ShiftLeft0           ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |picoProcessorBL|picoProcessor:ppBL|alushifter:pico_alushifter|ShiftRight1          ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |picoProcessorBL|picoProcessor:ppBL|gpr:pico_gpr|Mux12                              ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |picoProcessorBL|picoProcessor:ppBL|alushifter:pico_alushifter|ShiftLeft2           ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |picoProcessorBL|picoProcessor:ppBL|gpr:pico_gpr|Mux2                               ;
+; 17:1               ; 7 bits    ; 77 LEs        ; 63 LEs               ; 14 LEs                 ; No         ; |picoProcessorBL|picoProcessor:ppBL|alushifter:pico_alushifter|alu_result[1]        ;
+; 259:1              ; 8 bits    ; 1376 LEs      ; 1376 LEs             ; 0 LEs                  ; No         ; |picoProcessorBL|picoProcessor:ppBL|mux3:pico_mux3|Mux4                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL ;
++-----------------------------+-------+---------------------------+
+; Parameter Name              ; Value ; Type                      ;
++-----------------------------+-------+---------------------------+
+; d_width                     ; 8     ; Signed Integer            ;
+; stack_d_width               ; 12    ; Signed Integer            ;
+; stack_s_width               ; 4     ; Signed Integer            ;
+; stack_sp_width              ; 3     ; Signed Integer            ;
+; programcounter_d_width      ; 12    ; Signed Integer            ;
+; mux5_d_width                ; 12    ; Signed Integer            ;
+; mux5_sel_width              ; 3     ; Signed Integer            ;
+; mux3_d_width                ; 12    ; Signed Integer            ;
+; mux3_sel_width              ; 2     ; Signed Integer            ;
+; mux2_d_width                ; 12    ; Signed Integer            ;
+; mux2_sel_width              ; 1     ; Signed Integer            ;
+; interrupt_pc_d_width        ; 12    ; Signed Integer            ;
+; imem_size                   ; 4096  ; Signed Integer            ;
+; imem_d_width                ; 12    ; Signed Integer            ;
+; imem_opcode6_width          ; 6     ; Signed Integer            ;
+; imem_pc_address_width       ; 12    ; Signed Integer            ;
+; imem_const_disp_width       ; 8     ; Signed Integer            ;
+; imem_address_r1_r2_rd_width ; 3     ; Signed Integer            ;
+; gpr_d_width                 ; 8     ; Signed Integer            ;
+; gpr_d_addr_width            ; 3     ; Signed Integer            ;
+; gpr_reg_deep                ; 8     ; Signed Integer            ;
+; gpr_op_width                ; 5     ; Signed Integer            ;
+; alu_shifter_d_width         ; 8     ; Signed Integer            ;
+; alu_shifter_opcode_width    ; 4     ; Signed Integer            ;
+; ext_d_width                 ; 12    ; Signed Integer            ;
+; dmem_d_width                ; 8     ; Signed Integer            ;
+; dmem_width                  ; 256   ; Signed Integer            ;
+; controller_opcode6_width    ; 6     ; Signed Integer            ;
+; controller_alu_fn_width     ; 4     ; Signed Integer            ;
+; fa_d_width                  ; 12    ; Signed Integer            ;
+; int_d_width                 ; 12    ; Signed Integer            ;
+; tri_d_width                 ; 8     ; Signed Integer            ;
+; buff_d_width                ; 8     ; Signed Integer            ;
++-----------------------------+-------+---------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|controller:pico_controller ;
++---------------------+-------+--------------------------------------------------------------+
+; Parameter Name      ; Value ; Type                                                         ;
++---------------------+-------+--------------------------------------------------------------+
+; opcode6_width       ; 6     ; Signed Integer                                               ;
+; alu_fn_width        ; 4     ; Signed Integer                                               ;
+; d_alu_fn            ; 000   ; Unsigned Binary                                              ;
+; d_dmem_write_en     ; 0     ; Unsigned Binary                                              ;
+; d_mux2_1_1_or_disp  ; 0     ; Unsigned Binary                                              ;
+; d_mux5_1            ; 001   ; Unsigned Binary                                              ;
+; d_mux2_1_r2_rd      ; 0     ; Unsigned Binary                                              ;
+; d_mux3_1            ; 00    ; Unsigned Binary                                              ;
+; d_mux2_1_gpr2_const ; 0     ; Unsigned Binary                                              ;
+; d_gpr_write_en      ; 0     ; Unsigned Binary                                              ;
+; d_reti_signal       ; 0     ; Unsigned Binary                                              ;
+; d_int_en            ; 0     ; Unsigned Binary                                              ;
+; d_port_write        ; 0     ; Unsigned Binary                                              ;
+; d_port_read         ; 0     ; Unsigned Binary                                              ;
+; d_push_pop          ; 0     ; Unsigned Binary                                              ;
+; d_tri_state_buffer  ; 0     ; Unsigned Binary                                              ;
+; d_stack_en          ; 0     ; Unsigned Binary                                              ;
+; d_branch_taken      ; 0     ; Unsigned Binary                                              ;
++---------------------+-------+--------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|mux5:pico_mux5 ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; d_width        ; 12    ; Signed Integer                                        ;
+; sel_width      ; 3     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|mux3:pico_mux3 ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; d_width        ; 8     ; Signed Integer                                        ;
+; sel_width      ; 2     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|mux2:pico_mux2_1_r2_rd ;
++----------------+-------+---------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                          ;
++----------------+-------+---------------------------------------------------------------+
+; d_width        ; 3     ; Signed Integer                                                ;
+; sel_width      ; 1     ; Signed Integer                                                ;
++----------------+-------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|mux2:pico_mux2_1_gpr2_const ;
++----------------+-------+--------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                               ;
++----------------+-------+--------------------------------------------------------------------+
+; d_width        ; 8     ; Signed Integer                                                     ;
+; sel_width      ; 1     ; Signed Integer                                                     ;
++----------------+-------+--------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|mux2:pico_mux2_1_1_disp ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; d_width        ; 8     ; Signed Integer                                                 ;
+; sel_width      ; 1     ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|stack:pico_stack ;
++----------------+-------+---------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                    ;
++----------------+-------+---------------------------------------------------------+
+; d_width        ; 12    ; Signed Integer                                          ;
+; s_width        ; 4     ; Signed Integer                                          ;
+; sp_width       ; 3     ; Signed Integer                                          ;
++----------------+-------+---------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|program_counter:pico_program_counter ;
++----------------+-------+-----------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                        ;
++----------------+-------+-----------------------------------------------------------------------------+
+; d_width        ; 12    ; Signed Integer                                                              ;
++----------------+-------+-----------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|imem:pico_imem ;
++------------------------+-------+-----------------------------------------------+
+; Parameter Name         ; Value ; Type                                          ;
++------------------------+-------+-----------------------------------------------+
+; imem_size              ; 4096  ; Signed Integer                                ;
+; d_width                ; 12    ; Signed Integer                                ;
+; opcode6_width          ; 6     ; Signed Integer                                ;
+; pc_address_width       ; 12    ; Signed Integer                                ;
+; const_disp_width       ; 8     ; Signed Integer                                ;
+; address_r1_r2_rd_width ; 3     ; Signed Integer                                ;
++------------------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|extension:pico_extension ;
++----------------+-------+-----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                            ;
++----------------+-------+-----------------------------------------------------------------+
+; d_width        ; 12    ; Signed Integer                                                  ;
++----------------+-------+-----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|full_adder:pico_full_adder ;
++----------------+-------+-------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                              ;
++----------------+-------+-------------------------------------------------------------------+
+; d_width        ; 12    ; Signed Integer                                                    ;
++----------------+-------+-------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|gpr:pico_gpr ;
++----------------+-------+-----------------------------------------------------+
+; Parameter Name ; Value ; Type                                                ;
++----------------+-------+-----------------------------------------------------+
+; d_width        ; 8     ; Signed Integer                                      ;
+; d_addr_width   ; 3     ; Signed Integer                                      ;
+; reg_deep       ; 8     ; Signed Integer                                      ;
+; op_width       ; 5     ; Signed Integer                                      ;
++----------------+-------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|dmem:pico_dmem ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; d_width        ; 8     ; Signed Integer                                        ;
+; dmem_width     ; 256   ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|alushifter:pico_alushifter ;
++----------------+-------+-------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                              ;
++----------------+-------+-------------------------------------------------------------------+
+; d_width        ; 8     ; Signed Integer                                                    ;
+; opcode_width   ; 4     ; Signed Integer                                                    ;
++----------------+-------+-------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|interrupt_pc:pico_interrupt_pc ;
++----------------+-------+-----------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                  ;
++----------------+-------+-----------------------------------------------------------------------+
+; d_width        ; 12    ; Signed Integer                                                        ;
++----------------+-------+-----------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|tri_state_buffer:pico_tri_state_buffer ;
++----------------+-------+-------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                          ;
++----------------+-------+-------------------------------------------------------------------------------+
+; d_width        ; 8     ; Signed Integer                                                                ;
++----------------+-------+-------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoProcessor:ppBL|buffer:pico_buffer ;
++----------------+-------+-----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                      ;
++----------------+-------+-----------------------------------------------------------+
+; d_width        ; 8     ; Signed Integer                                            ;
++----------------+-------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dynamic_display:dynamic_disp_A ;
++----------------+------------------------------+-----------------------------+
+; Parameter Name ; Value                        ; Type                        ;
++----------------+------------------------------+-----------------------------+
+; DEF_COUNT      ; 0000000000000011000000000000 ; Unsigned Binary             ;
++----------------+------------------------------+-----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dynamic_display:dynamic_disp_B ;
++----------------+------------------------------+-----------------------------+
+; Parameter Name ; Value                        ; Type                        ;
++----------------+------------------------------+-----------------------------+
+; DEF_COUNT      ; 0000000000000011000000000000 ; Unsigned Binary             ;
++----------------+------------------------------+-----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "bcd:program_counter_bcd"                                                                                                                                                                 ;
++-------------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                                                                                                                           ;
++-------------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; ibin        ; Input  ; Warning  ; Input port expression (12 bits) is wider than the input port (8 bits) it drives.  The 4 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; bcd_hundred ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                               ;
++-------------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Clock_Divider5Mhz:CD_5Mhz"                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; OUT_CLK ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------+
+; Port Connectivity Checks: "picoProcessor:ppBL|mux2:pico_mux2_1_1_disp" ;
++------------------+-------+----------+----------------------------------+
+; Port             ; Type  ; Severity ; Details                          ;
++------------------+-------+----------+----------------------------------+
+; mux2_data0[7..1] ; Input ; Info     ; Stuck at GND                     ;
+; mux2_data0[0]    ; Input ; Info     ; Stuck at VCC                     ;
++------------------+-------+----------+----------------------------------+
+
+
++---------------------------------------------------------------+
+; Port Connectivity Checks: "picoProcessor:ppBL|mux5:pico_mux5" ;
++-------------------+-------+----------+------------------------+
+; Port              ; Type  ; Severity ; Details                ;
++-------------------+-------+----------+------------------------+
+; mux5_data0[11..1] ; Input ; Info     ; Stuck at GND           ;
+; mux5_data0[0]     ; Input ; Info     ; Stuck at VCC           ;
++-------------------+-------+----------+------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "picoProcessor:ppBL"                                                                            ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; pico_port_read  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; pico_port_write ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 61                          ;
+; cycloneiii_ff         ; 2285                        ;
+;     CLR               ; 85                          ;
+;     CLR SCLR          ; 28                          ;
+;     ENA CLR           ; 2172                        ;
+; cycloneiii_io_obuf    ; 8                           ;
+; cycloneiii_lcell_comb ; 2461                        ;
+;     arith             ; 77                          ;
+;         2 data inputs ; 44                          ;
+;         3 data inputs ; 33                          ;
+;     normal            ; 2384                        ;
+;         0 data inputs ; 3                           ;
+;         1 data inputs ; 10                          ;
+;         2 data inputs ; 59                          ;
+;         3 data inputs ; 362                         ;
+;         4 data inputs ; 1950                        ;
+;                       ;                             ;
+; Max LUT depth         ; 25.00                       ;
+; Average LUT depth     ; 12.85                       ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:10     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 15.0.0 Build 145 04/22/2015 SJ Full Version
+    Info: Processing started: Sun Dec 27 11:59:10 2015
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off picoProcessorBL -c picoProcessorBL
+Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
+Info (12021): Found 1 design units, including 1 entities, in source file tri_state_buffer.v
+    Info (12023): Found entity 1: tri_state_buffer
+Info (12021): Found 1 design units, including 1 entities, in source file time_display.v
+    Info (12023): Found entity 1: time_display
+Info (12021): Found 1 design units, including 1 entities, in source file tb_pico_processor.v
+    Info (12023): Found entity 1: tb_pico_processor
+Info (12021): Found 1 design units, including 1 entities, in source file t_ff.v
+    Info (12023): Found entity 1: T_FF
+Info (12021): Found 1 design units, including 1 entities, in source file stack.v
+    Info (12023): Found entity 1: stack
+Info (12021): Found 1 design units, including 1 entities, in source file program_counter.v
+    Info (12023): Found entity 1: program_counter
+Info (12021): Found 1 design units, including 1 entities, in source file picoprocessor.v
+    Info (12023): Found entity 1: picoProcessor
+Info (12021): Found 1 design units, including 1 entities, in source file mux5.v
+    Info (12023): Found entity 1: mux5
+Info (12021): Found 1 design units, including 1 entities, in source file mux3.v
+    Info (12023): Found entity 1: mux3
+Info (12021): Found 1 design units, including 1 entities, in source file mux2.v
+    Info (12023): Found entity 1: mux2
+Info (12021): Found 1 design units, including 1 entities, in source file interrupt_pc.v
+    Info (12023): Found entity 1: interrupt_pc
+Info (12021): Found 1 design units, including 1 entities, in source file imem.v
+    Info (12023): Found entity 1: imem
+Info (12021): Found 1 design units, including 1 entities, in source file gpr.v
+    Info (12023): Found entity 1: gpr
+Info (12021): Found 1 design units, including 1 entities, in source file full_adder.v
+    Info (12023): Found entity 1: full_adder
+Info (12021): Found 1 design units, including 1 entities, in source file extension.v
+    Info (12023): Found entity 1: extension
+Info (12021): Found 1 design units, including 1 entities, in source file dynamic_display.v
+    Info (12023): Found entity 1: dynamic_display
+Info (12021): Found 1 design units, including 1 entities, in source file dmem.v
+    Info (12023): Found entity 1: dmem
+Info (12021): Found 1 design units, including 1 entities, in source file display_module.v
+    Info (12023): Found entity 1: display_module
+Info (12021): Found 1 design units, including 1 entities, in source file controller.v
+    Info (12023): Found entity 1: controller
+Info (12021): Found 1 design units, including 1 entities, in source file condition_code.v
+    Info (12023): Found entity 1: condition_code
+Info (12021): Found 1 design units, including 1 entities, in source file chattering.v
+    Info (12023): Found entity 1: Chattering
+Info (12021): Found 1 design units, including 1 entities, in source file buffer.v
+    Info (12023): Found entity 1: buffer
+Info (12021): Found 1 design units, including 1 entities, in source file alushifter.v
+    Info (12023): Found entity 1: alushifter
+Info (12021): Found 1 design units, including 1 entities, in source file picoprocessorbl.v
+    Info (12023): Found entity 1: picoProcessorBL
+Info (12021): Found 1 design units, including 1 entities, in source file tb_pico_processorbl.v
+    Info (12023): Found entity 1: tb_pico_processorBL
+Info (12021): Found 1 design units, including 1 entities, in source file bcd.v
+    Info (12023): Found entity 1: bcd
+Info (12021): Found 1 design units, including 1 entities, in source file clock_divider10mhz.v
+    Info (12023): Found entity 1: Clock_Divider10Mhz
+Info (12021): Found 1 design units, including 1 entities, in source file clock_divider5mhz.v
+    Info (12023): Found entity 1: Clock_Divider5Mhz
+Info (12127): Elaborating entity "picoProcessorBL" for the top level hierarchy
+Info (12128): Elaborating entity "picoProcessor" for hierarchy "picoProcessor:ppBL"
+Info (12128): Elaborating entity "controller" for hierarchy "picoProcessor:ppBL|controller:pico_controller"
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_alu_fn", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_dmem_write_en", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_mux2_1_1_or_disp", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_mux5_1", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_mux2_1_r2_rd", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_mux3_1", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_mux2_1_gpr2_const", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_gpr_write_en", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_reti_signal", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_int_en", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_port_write", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_port_read", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_push_pop", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_tri_state_buffer", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_stack_en", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at controller.v(132): inferring latch(es) for variable "controller_branch_taken", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "controller_branch_taken" at controller.v(178)
+Info (10041): Inferred latch for "controller_stack_en" at controller.v(178)
+Info (10041): Inferred latch for "controller_tri_state_buffer" at controller.v(178)
+Info (10041): Inferred latch for "controller_push_pop" at controller.v(178)
+Info (10041): Inferred latch for "controller_port_read" at controller.v(178)
+Info (10041): Inferred latch for "controller_port_write" at controller.v(178)
+Info (10041): Inferred latch for "controller_int_en" at controller.v(178)
+Info (10041): Inferred latch for "controller_reti_signal" at controller.v(178)
+Info (10041): Inferred latch for "controller_gpr_write_en" at controller.v(178)
+Info (10041): Inferred latch for "controller_mux2_1_gpr2_const[0]" at controller.v(178)
+Info (10041): Inferred latch for "controller_mux3_1[0]" at controller.v(178)
+Info (10041): Inferred latch for "controller_mux3_1[1]" at controller.v(178)
+Info (10041): Inferred latch for "controller_mux2_1_r2_rd[0]" at controller.v(178)
+Info (10041): Inferred latch for "controller_mux5_1[0]" at controller.v(178)
+Info (10041): Inferred latch for "controller_mux5_1[1]" at controller.v(178)
+Info (10041): Inferred latch for "controller_mux5_1[2]" at controller.v(178)
+Info (10041): Inferred latch for "controller_mux2_1_1_or_disp[0]" at controller.v(178)
+Info (10041): Inferred latch for "controller_dmem_write_en" at controller.v(178)
+Info (10041): Inferred latch for "controller_alu_fn[0]" at controller.v(178)
+Info (10041): Inferred latch for "controller_alu_fn[1]" at controller.v(178)
+Info (10041): Inferred latch for "controller_alu_fn[2]" at controller.v(178)
+Info (10041): Inferred latch for "controller_alu_fn[3]" at controller.v(178)
+Info (12128): Elaborating entity "mux5" for hierarchy "picoProcessor:ppBL|mux5:pico_mux5"
+Info (12128): Elaborating entity "mux3" for hierarchy "picoProcessor:ppBL|mux3:pico_mux3"
+Warning (10230): Verilog HDL assignment warning at mux3.v(27): truncated value with size 12 to match size of target (8)
+Info (12128): Elaborating entity "mux2" for hierarchy "picoProcessor:ppBL|mux2:pico_mux2_1_r2_rd"
+Info (12128): Elaborating entity "mux2" for hierarchy "picoProcessor:ppBL|mux2:pico_mux2_1_gpr2_const"
+Info (12128): Elaborating entity "stack" for hierarchy "picoProcessor:ppBL|stack:pico_stack"
+Info (12128): Elaborating entity "program_counter" for hierarchy "picoProcessor:ppBL|program_counter:pico_program_counter"
+Info (12128): Elaborating entity "imem" for hierarchy "picoProcessor:ppBL|imem:pico_imem"
+Warning (10030): Net "imem.data_a" at imem.v(31) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "imem.waddr_a" at imem.v(31) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "imem.we_a" at imem.v(31) has no driver or initial value, using a default initial value '0'
+Info (12128): Elaborating entity "extension" for hierarchy "picoProcessor:ppBL|extension:pico_extension"
+Info (12128): Elaborating entity "full_adder" for hierarchy "picoProcessor:ppBL|full_adder:pico_full_adder"
+Info (12128): Elaborating entity "gpr" for hierarchy "picoProcessor:ppBL|gpr:pico_gpr"
+Info (12128): Elaborating entity "dmem" for hierarchy "picoProcessor:ppBL|dmem:pico_dmem"
+Info (12128): Elaborating entity "alushifter" for hierarchy "picoProcessor:ppBL|alushifter:pico_alushifter"
+Warning (10235): Verilog HDL Always Construct warning at alushifter.v(26): variable "reset" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10230): Verilog HDL assignment warning at alushifter.v(148): truncated value with size 16 to match size of target (9)
+Warning (10230): Verilog HDL assignment warning at alushifter.v(161): truncated value with size 16 to match size of target (9)
+Warning (10230): Verilog HDL assignment warning at alushifter.v(175): truncated value with size 8 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at alushifter.v(189): truncated value with size 8 to match size of target (1)
+Info (12128): Elaborating entity "condition_code" for hierarchy "picoProcessor:ppBL|condition_code:pico_condition_code"
+Info (12128): Elaborating entity "interrupt_pc" for hierarchy "picoProcessor:ppBL|interrupt_pc:pico_interrupt_pc"
+Info (12128): Elaborating entity "tri_state_buffer" for hierarchy "picoProcessor:ppBL|tri_state_buffer:pico_tri_state_buffer"
+Info (12128): Elaborating entity "buffer" for hierarchy "picoProcessor:ppBL|buffer:pico_buffer"
+Info (12128): Elaborating entity "Clock_Divider5Mhz" for hierarchy "Clock_Divider5Mhz:CD_5Mhz"
+Info (12128): Elaborating entity "T_FF" for hierarchy "Clock_Divider5Mhz:CD_5Mhz|T_FF:T_FF_00"
+Info (12128): Elaborating entity "bcd" for hierarchy "bcd:program_counter_bcd"
+Info (12128): Elaborating entity "time_display" for hierarchy "time_display:td_A"
+Info (12128): Elaborating entity "display_module" for hierarchy "time_display:td_A|display_module:dm1"
+Info (12128): Elaborating entity "dynamic_display" for hierarchy "dynamic_display:dynamic_disp_A"
+Info (10264): Verilog HDL Case Statement information at dynamic_display.v(91): all case item expressions in this case statement are onehot
+Info (276014): Found 6 instances of uninferred RAM logic
+    Info (276007): RAM logic "bcd:port_address_bcd|Ram0" is uninferred due to asynchronous read logic
+    Info (276007): RAM logic "bcd:port_address_bcd|Ram1" is uninferred due to asynchronous read logic
+    Info (276007): RAM logic "bcd:port_address_bcd|Ram2" is uninferred due to asynchronous read logic
+    Info (276007): RAM logic "bcd:port_data_bcd|Ram0" is uninferred due to asynchronous read logic
+    Info (276007): RAM logic "bcd:port_data_bcd|Ram1" is uninferred due to asynchronous read logic
+    Info (276007): RAM logic "bcd:port_data_bcd|Ram2" is uninferred due to asynchronous read logic
+Critical Warning (127005): Memory depth (8192) in the design file differs from memory depth (4097) in the Memory Initialization File "C:/Users/Jay/Desktop/picoProcessor Board Level/db/picoProcessorBL.ram0_imem_37c714.hdl.mif" -- setting initial value for remaining addresses to 0
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/Users/Jay/Desktop/picoProcessor Board Level/db/picoProcessorBL.ram0_imem_37c714.hdl.mif" contains "don't care" values -- overwriting them with 0s
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "picoProcessor:ppBL|controller:pico_controller|controller_mux2_1_gpr2_const[0]" merged with LATCH primitive "picoProcessor:ppBL|controller:pico_controller|controller_mux2_1_r2_rd[0]"
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_branch_taken has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_alu_fn[2] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_alu_fn[3] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_mux2_1_r2_rd[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_alu_fn[1] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_alu_fn[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_reti_signal has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_mux5_1[2] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+    Warning (13013): Ports ENA and CLR on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_mux5_1[1] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+    Warning (13013): Ports ENA and CLR on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_mux2_1_1_or_disp[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_mux5_1[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+    Warning (13013): Ports ENA and CLR on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_mux3_1[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_mux3_1[1] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_gpr_write_en has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_int_en has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|interrupt_pc:pico_interrupt_pc|int_ack
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_stack_en has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_push_pop has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_dmem_write_en has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Warning (13012): Latch picoProcessor:ppBL|controller:pico_controller|controller_tri_state_buffer has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal picoProcessor:ppBL|program_counter:pico_program_counter|pc_out[11]
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "SEG_A[0]" is stuck at GND
+    Warning (13410): Pin "SEG_B[0]" is stuck at GND
+Info (286030): Timing-Driven Synthesis is running
+Info (144001): Generated suppressed messages file C:/Users/Jay/Desktop/picoProcessor Board Level/output_files/picoProcessorBL.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "start_stop_btn"
+Info (21057): Implemented 4692 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 5 input pins
+    Info (21059): Implemented 48 output pins
+    Info (21060): Implemented 8 bidirectional pins
+    Info (21061): Implemented 4631 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 74 warnings
+    Info: Peak virtual memory: 720 megabytes
+    Info: Processing ended: Sun Dec 27 11:59:41 2015
+    Info: Elapsed time: 00:00:31
+    Info: Total CPU time (on all processors): 00:00:32
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/Jay/Desktop/picoProcessor Board Level/output_files/picoProcessorBL.map.smsg.
+
+

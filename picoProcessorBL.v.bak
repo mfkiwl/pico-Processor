@@ -1,0 +1,42 @@
+module picoProcessorBL(clk, reset_btn, start_btn, int_req_btn)
+
+wire start_btn_in;
+wire start_btn_out;
+
+wire reset_btn_in;
+wire reset_btn_out;
+
+wire int_req_btn_in;
+wire int_req_btn_out;
+
+picoProcessor ppBL  (.pico_clk(pico_clk), 
+							.pico_reset(reset_btn_out),
+							.pico_port_ready(pico_port_ready), 
+							.pico_int_req(int_req_btn_out), 
+							.pico_port_address(pico_port_address), 
+							.pico_port_read(pico_port_read), 
+							.pico_port_write(pico_port_write), 
+							.pico_int_ack(port_int_ack), 
+							.pico_port_data(pico_port_data),
+							.debug_program_counter(debug_program_counter),
+							.debug_opcode(debug_opcode),
+							.debug_cc_z(debug_cc_c),
+							.debug_cc_c(debug_cc_z),
+							.debug_branch_taken(debug_branch_taken));
+
+Chattering LPF_pico_start	(.CLK(CLK),
+									 .RST(RST),
+									 .IN_BTN(start_btn_in),
+									 .OUT_BTN(start_btn_out));
+
+Chattering LPF_pico_reset	(.CLK(CLK),
+									 .RST(RST),
+									 .IN_BTN(reset_btn_in),
+									 .OUT_BTN(reset_btn_out));
+					
+Chattering LPF_pico_int_req(.CLK(CLK),
+									 .RST(RST),
+									 .IN_BTN(int_req_btn_in),
+									 .OUT_BTN(int_req_btn_out));
+								
+endmodule

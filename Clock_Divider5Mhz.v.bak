@@ -1,0 +1,22 @@
+//
+// Module: Clock_Divider
+// Author: Kiyoto
+//
+`resetall
+`timescale 1ps/1ps
+module Clock_Divider5Mhz ( IN_CLK, OUT_CLK );
+	// Input/Output Signal
+	input  wire IN_CLK;
+	output wire OUT_CLK;
+	// Internal Signal
+	wire Q_00, Q_01, Q_02, Q_03, Q_04;
+	
+	// T-FF Chain
+	// 20 MHz * 2^(-2) = 5 MHz
+	T_FF T_FF_00 ( .T( IN_CLK ), .Q( Q_00 ) );
+	T_FF T_FF_01 ( .T( Q_00 ),   .Q( Q_01 ) );
+	T_FF T_FF_02 ( .T( Q_01 ),   .Q( Q_02 ) );
+	T_FF T_FF_03 ( .T( Q_02 ),   .Q( Q_03 ) );
+	T_FF T_FF_04 ( .T( Q_03 ),   .Q( Q_04 ) );
+	T_FF T_FF_05 ( .T( Q_04 ),   .Q( OUT_CLK ) );
+endmodule

@@ -1,0 +1,40 @@
+`timescale 1ps/1ps
+module condition_code (clk, reset, cc_alu_c, cc_alu_z, cc_int_c, cc_int_z, cc_c, cc_z, cc_reti_signal);
+
+
+input							 clk;
+input                    reset;
+input                    cc_alu_c;
+input                    cc_alu_z;
+input                    cc_int_c;
+input                    cc_int_z;
+input                    cc_reti_signal;
+
+output                   cc_c;
+output                   cc_z;
+
+reg                      cc_c;
+reg                      cc_z;
+
+always@(posedge clk or negedge reset)
+begin
+  if(reset != 1'b1 )
+  begin
+    cc_c <= 0;
+    cc_z <= 0;
+  end
+
+  else if(cc_reti_signal == 1'b1 )//RETI
+  begin
+    cc_c <= cc_int_c;
+    cc_z <= cc_int_z;
+  end
+  
+  else
+  begin
+    cc_c <= cc_alu_c;
+    cc_z <= cc_alu_z;
+  end
+
+end
+endmodule

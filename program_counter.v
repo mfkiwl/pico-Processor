@@ -1,0 +1,29 @@
+`timescale 1ps/1ps
+module program_counter(clk, reset, pc_out, pc_in);
+  
+parameter d_width = 12;
+
+input                     reset;
+input                     clk;
+input  [d_width-1:0]      pc_in;
+
+
+output [d_width-1:0]      pc_out;
+   
+reg    [d_width-1:0]      pc_out;
+
+always@(posedge clk or negedge reset)
+begin
+      if(reset != 1)
+      begin
+      pc_out <= 0;
+      end
+      
+      else
+		begin
+      pc_out <= pc_in;
+      end
+      $display("PC: %d", pc_out);
+end
+endmodule
+

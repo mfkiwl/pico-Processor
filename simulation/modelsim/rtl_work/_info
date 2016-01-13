@@ -1,0 +1,548 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Jay/Desktop/picoProcessor Board Level/simulation/modelsim
+T_opt
+Z1 !s110 1451180513
+VDBOBN2mb8<^Eb6ZEn__bS0
+04 19 4 work tb_pico_processorBL fast 0
+=1-d0509925ab9f-567f41e1-214-1b58
+o-quiet -auto_acc_if_foreign -work work -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work +acc
+n@_opt
+OL;O;10.3c;59
+valushifter
+R1
+!i10b 1
+!s100 NAUTE_OKB=>_PUcCeiozd3
+IBAad;KXFCf_W5eC<WSP711
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+R0
+w1450928728
+8C:/Users/Jay/Desktop/picoProcessor Board Level/alushifter.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/alushifter.v
+L0 2
+Z3 OL;L;10.3c;59
+r1
+!s85 0
+31
+!s108 1451180513.192000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/alushifter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/alushifter.v|
+!i113 0
+Z4 o-vlog01compat -work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z5 !s92 -vlog01compat -work work {+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level} -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+vbcd
+R1
+!i10b 1
+!s100 oNgQjYR?RiTC9^C>nW9K33
+I]ai1UogEg;0OkZgOZ<JdK0
+R2
+R0
+w1449788407
+8C:/Users/Jay/Desktop/picoProcessor Board Level/bcd.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/bcd.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180513.284000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/bcd.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/bcd.v|
+!i113 0
+R4
+R5
+vbuffer
+R1
+!i10b 1
+!s100 R]9fN<oM?NZb;3H9]ISDU3
+I]3C@<27T_4hSSZT]H^MdS3
+R2
+R0
+w1449574541
+8C:/Users/Jay/Desktop/picoProcessor Board Level/buffer.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/buffer.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180513.146000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/buffer.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/buffer.v|
+!i113 0
+R4
+R5
+vClock_Divider5Mhz
+R1
+!i10b 1
+!s100 8[^eoS@d]T3R5G6N4l@UW2
+IURK@=4`TmH;9<72lcIBde2
+R2
+R0
+w1449735444
+8C:/Users/Jay/Desktop/picoProcessor Board Level/Clock_Divider5Mhz.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/Clock_Divider5Mhz.v
+L0 7
+R3
+r1
+!s85 0
+31
+!s108 1451180513.336000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/Clock_Divider5Mhz.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/Clock_Divider5Mhz.v|
+!i113 0
+R4
+R5
+n@clock_@divider5@mhz
+vcondition_code
+R1
+!i10b 1
+!s100 C1f4obTd=b]V2d21dC^QJ2
+I>2nUfMLbVNFMC`MCQX9[82
+R2
+R0
+w1450924384
+8C:/Users/Jay/Desktop/picoProcessor Board Level/condition_code.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/condition_code.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180513.102000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/condition_code.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/condition_code.v|
+!i113 0
+R4
+R5
+vcontroller
+R1
+!i10b 1
+!s100 _:;@HN9Wlce>6_SNAW6[c2
+IRgnT8c6zT=1SM?<HlBKE92
+R2
+R0
+w1451180340
+8C:/Users/Jay/Desktop/picoProcessor Board Level/controller.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/controller.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180513.050000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/controller.v|
+!i113 0
+R4
+R5
+vdisplay_module
+R1
+!i10b 1
+!s100 gOYbIo2Y8^kN]W3G:jdb13
+I69mcZmeFf7;?bF::1DJld0
+R2
+R0
+Z6 w1449668248
+8C:/Users/Jay/Desktop/picoProcessor Board Level/display_module.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/display_module.v
+L0 9
+R3
+r1
+!s85 0
+31
+!s108 1451180513.004000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/display_module.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/display_module.v|
+!i113 0
+R4
+R5
+vdmem
+Z7 !s110 1451180512
+!i10b 1
+!s100 AoTzR35IKHXFn_e]DieJK2
+I`4z_K?5<e8_C0eKXBREg@3
+R2
+R0
+w1450928727
+8C:/Users/Jay/Desktop/picoProcessor Board Level/dmem.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/dmem.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.958000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/dmem.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/dmem.v|
+!i113 0
+R4
+R5
+vdynamic_display
+R7
+!i10b 1
+!s100 `f4JTlARd2LaIm:WL4S_a3
+I>JbE=IRmhbH1Ial=gWamm0
+R2
+R0
+w1449668247
+8C:/Users/Jay/Desktop/picoProcessor Board Level/dynamic_display.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/dynamic_display.v
+L0 9
+R3
+r1
+!s85 0
+31
+!s108 1451180512.913000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/dynamic_display.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/dynamic_display.v|
+!i113 0
+R4
+R5
+vextension
+R7
+!i10b 1
+!s100 HKJQZ4VU:fLFKflBeUTjR3
+IjFHD9aob18FeAPfbBY3l?1
+R2
+R0
+w1449574540
+8C:/Users/Jay/Desktop/picoProcessor Board Level/extension.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/extension.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.865000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/extension.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/extension.v|
+!i113 0
+R4
+R5
+vfull_adder
+R7
+!i10b 1
+!s100 Hm;z[oBLm8h4P09k<14B_2
+I6K1>:1=CTklPzPI`X?`jC2
+R2
+R0
+w1450072805
+8C:/Users/Jay/Desktop/picoProcessor Board Level/full_adder.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/full_adder.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.820000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/full_adder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/full_adder.v|
+!i113 0
+R4
+R5
+vgpr
+R7
+!i10b 1
+!s100 `e:B@ocSe>odoC]<03nEV1
+IL[4ad2<ImITXfdm4Z;H[52
+R2
+R0
+w1450072807
+8C:/Users/Jay/Desktop/picoProcessor Board Level/gpr.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/gpr.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.776000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/gpr.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/gpr.v|
+!i113 0
+R4
+R5
+vimem
+R7
+!i10b 1
+!s100 ABz]cZJ;7MhBzi^AiVkia1
+I:;;XFQ@ZJDHVFmAB7EGPf1
+R2
+R0
+w1451172300
+8C:/Users/Jay/Desktop/picoProcessor Board Level/imem.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/imem.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.730000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/imem.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/imem.v|
+!i113 0
+R4
+R5
+vinterrupt_pc
+R7
+!i10b 1
+!s100 68O9Z9jMo[2;8NUHHN:CZ2
+Ii:4^?n75hc3OJFQSYXfEV0
+R2
+R0
+w1450924974
+8C:/Users/Jay/Desktop/picoProcessor Board Level/interrupt_pc.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/interrupt_pc.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.682000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/interrupt_pc.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/interrupt_pc.v|
+!i113 0
+R4
+R5
+vmux2
+R7
+!i10b 1
+!s100 8om2Y?NbbiW=A]`Xh0[h73
+II3XooGJH1nY6o`lbda;WA0
+R2
+R0
+w1449804195
+8C:/Users/Jay/Desktop/picoProcessor Board Level/mux2.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/mux2.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.635000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/mux2.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/mux2.v|
+!i113 0
+R4
+R5
+vmux3
+R7
+!i10b 1
+!s100 b8Ul]I16A^>gOBAza?>>:0
+IV2AO36Oc45C>Zn<ZI3OO13
+R2
+R0
+w1449804194
+8C:/Users/Jay/Desktop/picoProcessor Board Level/mux3.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/mux3.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.592000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/mux3.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/mux3.v|
+!i113 0
+R4
+R5
+vmux5
+R7
+!i10b 1
+!s100 3<M<Wz`6dLaG[mBjN5BRL3
+IoT64oaiTj9O615K`lz^Rd1
+R2
+R0
+w1449800619
+8C:/Users/Jay/Desktop/picoProcessor Board Level/mux5.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/mux5.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.548000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/mux5.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/mux5.v|
+!i113 0
+R4
+R5
+vpicoProcessor
+R7
+!i10b 1
+!s100 Z0BPz<l]A`8zX220I6h1B0
+IMnSTaYP4BiB2bVE8<bJ`S3
+R2
+R0
+w1451175591
+8C:/Users/Jay/Desktop/picoProcessor Board Level/picoProcessor.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/picoProcessor.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.500000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/picoProcessor.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/picoProcessor.v|
+!i113 0
+R4
+R5
+npico@processor
+vpicoProcessorBL
+R1
+!i10b 1
+!s100 `S2Q>N[HWKcY[2zkXgT4i0
+I:oSXUzfY^mOn7W^CZM1F;3
+R2
+R0
+w1451166554
+8C:/Users/Jay/Desktop/picoProcessor Board Level/picoProcessorBL.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/picoProcessorBL.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180513.238000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/picoProcessorBL.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/picoProcessorBL.v|
+!i113 0
+R4
+R5
+npico@processor@b@l
+vprogram_counter
+R7
+!i10b 1
+!s100 j_VB2dO13lNTEOV7PV6dn2
+ILljUmNHW=ljQJVFG9S9@B0
+R2
+R0
+Z8 w1449574539
+8C:/Users/Jay/Desktop/picoProcessor Board Level/program_counter.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/program_counter.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.457000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/program_counter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/program_counter.v|
+!i113 0
+R4
+R5
+vstack
+R7
+!i10b 1
+!s100 F6ElZ_UZeoG_=[=g?on3K1
+IbgN[7mTh2K]VNV7]`6W7E2
+R2
+R0
+R8
+8C:/Users/Jay/Desktop/picoProcessor Board Level/stack.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/stack.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.411000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/stack.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/stack.v|
+!i113 0
+R4
+R5
+vT_FF
+R7
+!i10b 1
+!s100 ^BXbo_T?[5ih1SnBe0:H[3
+I`m33YFS?2OkQMC=k=@NJ22
+R2
+R0
+w1435469016
+8C:/Users/Jay/Desktop/picoProcessor Board Level/T_FF.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/T_FF.v
+L0 9
+R3
+r1
+!s85 0
+31
+!s108 1451180512.368000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/T_FF.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/T_FF.v|
+!i113 0
+R4
+R5
+n@t_@f@f
+vtb_pico_processorBL
+R1
+!i10b 1
+!s100 WooIF4CX9E5d?`MaY`QZj2
+I?=Z7fJbEHSDG7KWObLm4N0
+R2
+R0
+w1451179626
+8C:/Users/Jay/Desktop/picoProcessor Board Level/tb_pico_processorBL.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/tb_pico_processorBL.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180513.382000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/tb_pico_processorBL.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/tb_pico_processorBL.v|
+!i113 0
+R4
+R5
+ntb_pico_processor@b@l
+vtime_display
+R7
+!i10b 1
+!s100 n0V[BK=AOGEPlblNdGoCC1
+IeiP@CacaaEXA2WiE2UCjl2
+R2
+R0
+R6
+8C:/Users/Jay/Desktop/picoProcessor Board Level/time_display.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/time_display.v
+L0 9
+R3
+r1
+!s85 0
+31
+!s108 1451180512.326000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/time_display.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/time_display.v|
+!i113 0
+R4
+R5
+vtri_state_buffer
+R7
+!i10b 1
+!s100 <c6CQFWNh<64n]lXbEeVf2
+IKc[a:XnO<gVHaa[E]?@S?3
+R2
+R0
+w1449680294
+8C:/Users/Jay/Desktop/picoProcessor Board Level/tri_state_buffer.v
+FC:/Users/Jay/Desktop/picoProcessor Board Level/tri_state_buffer.v
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1451180512.281000
+!s107 C:/Users/Jay/Desktop/picoProcessor Board Level/tri_state_buffer.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jay/Desktop/picoProcessor Board Level|C:/Users/Jay/Desktop/picoProcessor Board Level/tri_state_buffer.v|
+!i113 0
+R4
+R5
